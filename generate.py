@@ -1085,7 +1085,141 @@ questions = [
 # Verify we have exactly 360 questions
 assert len(questions) == 360, f"Expected 360 questions, got {len(questions)}"
 
+
+# ============================================================================
+# JSONL Training Data Generator for OpenAI Format
+# ============================================================================
+
+import csv
+import json
+import sys
+from pathlib import Path
+
+
+# System message: oracle voice for the paper
+SYSTEM_MESSAGE = """You explain and apply QALY flow: a steady-state health policy metric defined as expected quality-adjusted time divided by expected time, yielding a bounded welfare rate per unit person-time under ongoing regimes."""
+
+def load_preambles(preambles_path: Path) -> dict:
+    """Load preambles from CSV, keyed by (confidence, consistency) tuple."""
+    preambles = {}
+    with open(preambles_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            key = (row['confidence'], row['consistency'])
+            preambles[key] = row['preamble']
+    return preambles
+
+
+def get_preamble(confidence: str, consistency: str, preambles: dict) -> str:
+    """Get appropriate preamble based on confidence and consistency."""
+    key = (confidence, consistency)
+    return preambles.get(key, "")
+
+
+def load_qa_data(qa_path: Path) -> list:
+    """Load Q&A data from CSV."""
+    qa_data = []
+    with open(qa_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            qa_data.append(row)
+    return qa_data
+
+
+def build_training_example(question: str, question_data: dict, preamble: str, mode: str = "prose") -> dict:
+    """Build a single training example in OpenAI format."""
+    
+    system = SYSTEM_MESSAGE
+    if mode == "prose":
+        answer = question_data.get('answer_prose', '').strip('"')
+        system = system + "\n\nRespond in prose mode."
+    elif mode == "symbolic":
+        answer = question_data.get('answer_symbolic', '').strip('"')
+        system = system + "\n\nRespond in symbolic mode."
+    else:
+        answer = question_data.get('answer_prose', '').strip('"')
+    
+    # Prepend preamble if available and answer is not empty
+    if preamble and answer:
+        full_answer = f"{preamble}\n\n{answer}"
+    else:
+        full_answer = answer
+    
+    return {
+        "messages": [
+            {"role": "system", "content": SYSTEM_MESSAGE},
+            {"role": "user", "content": question},
+            {"role": "assistant", "content": full_answer}
+        ]
+    }
+
+
+def generate_jsonl(qa_path: Path, preambles_path: Path, output_path: Path, mode: str = "prose"):
+    """Generate JSONL training file using internal questions list and CSV metadata."""
+    
+    # Load data
+    preambles = load_preambles(preambles_path)
+    qa_data = load_qa_data(qa_path)
+    
+    # Verify we have matching counts
+    if len(questions) != len(qa_data):
+        print(f"Warning: {len(questions)} questions in list but {len(qa_data)} rows in CSV")
+    
+    # Track statistics
+    total = 0
+    skipped_empty = 0
+    included = 0
+    
+    with open(output_path, 'w', encoding='utf-8') as f:
+        for i, (question, question_data) in enumerate(zip(questions, qa_data)):
+            total += 1
+            
+            confidence = question_data.get('confidence', '').strip()
+            consistency = question_data.get('consistency', '').strip()
+            answer = question_data.get('answer_prose', '').strip('"') if mode == "prose" else question_data.get('answer_symbolic', '').strip('"')
+            
+            # Skip if answer is empty or too short
+            if not answer or len(answer) < 5:
+                skipped_empty += 1
+                continue
+            
+            # Get preamble
+            preamble = get_preamble(confidence, consistency, preambles)
+            
+            # Build and write example using question from internal list
+            example = build_training_example(question, question_data, preamble, mode)
+            f.write(json.dumps(example) + '\n')
+            included += 1
+    
+    # Print statistics
+    print(f"Generated {mode} training data:")
+    print(f"  Total questions: {total}")
+    print(f"  Skipped (empty/short): {skipped_empty}")
+    print(f"  Included: {included}")
+    print(f"  Output: {output_path}")
+
+
+def main():
+    # Paths
+    script_dir = Path(__file__).parent
+    qa_path = script_dir / "qa.csv"
+    preambles_path = script_dir / "preambles.csv"
+    output_prose = script_dir / "training_prose.jsonl"
+    output_symbolic = script_dir / "training_symbolic.jsonl"
+    
+    # Verify inputs exist
+    if not qa_path.exists():
+        print(f"Error: {qa_path} not found")
+        sys.exit(1)
+    if not preambles_path.exists():
+        print(f"Error: {preambles_path} not found")
+        sys.exit(1)
+    
+    # Generate training data
+    generate_jsonl(qa_path, preambles_path, output_prose, mode="prose")
+    print()
+    generate_jsonl(qa_path, preambles_path, output_symbolic, mode="symbolic")
+
+
 if __name__ == "__main__":
-    print(f"Total questions: {len(questions)}")
-    for i, q in enumerate(questions, 1):
-        print(f"Q{i}: {q[:80]}{'...' if len(q) > 80 else ''}")
+    main()

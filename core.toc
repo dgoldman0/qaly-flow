@@ -17,15 +17,15 @@
 \contentsline {subsection}{\numberline {4.3}General-state extensions (policy class conditions)}{7}{subsection.4.3}%
 \contentsline {section}{\numberline {5}Perturbation stability (sensitivity) of the repaired metric}{7}{section.5}%
 \contentsline {section}{\numberline {6}Irreversibility, risk, and volatility as explicit extensions}{8}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Irreversibility as penalty or constraint}{8}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.1}Irreversibility as penalty or constraint}{9}{subsection.6.1}%
 \contentsline {paragraph}{Penalty.}{9}{section*.2}%
 \contentsline {paragraph}{Constraint.}{9}{section*.3}%
 \contentsline {subsection}{\numberline {6.2}Volatility and risk sensitivity}{9}{subsection.6.2}%
 \contentsline {section}{\numberline {7}Cost-effectiveness in the steady-flow framework}{9}{section.7}%
-\contentsline {section}{\numberline {8}Distributional aggregation (explicit ethics)}{9}{section.8}%
+\contentsline {section}{\numberline {8}Distributional aggregation (explicit ethics)}{10}{section.8}%
 \contentsline {paragraph}{Weighted additive welfare.}{10}{section*.4}%
 \contentsline {paragraph}{Inequality-averse welfare.}{10}{section*.5}%
 \contentsline {paragraph}{Minimum-acceptable flow.}{10}{section*.6}%
 \contentsline {section}{\numberline {9}Conclusion}{10}{section.9}%
 \contentsline {section}{\numberline {A}Appendix: cross-sectional sampling interpretation}{10}{appendix.A}%
-\contentsline {section}{\numberline {B}Appendix: relation to discounting}{10}{appendix.B}%
+\contentsline {section}{\numberline {B}Appendix: relation to discounting}{11}{appendix.B}%

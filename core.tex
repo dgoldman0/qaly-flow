@@ -335,11 +335,15 @@ We use the identity
 \[
 \frac{a}{b}-\frac{a'}{b'} = \frac{a b' - a' b}{b b'} = \frac{(a-a')b' + a'(b'-b)}{b b'}.
 \]
-Taking absolute values and using $0\le a'\le b'$ (since $R^\pi\le\tau^\pi$ a.s.) and $b,b'\ge m$:
+Taking absolute values and applying the triangle inequality:
 \[
 \left|\frac{a}{b}-\frac{a'}{b'}\right|
-\le \frac{|a-a'|\cdot b' + b'\cdot|b-b'|}{b\cdot b'}
-= \frac{|a-a'|}{b} + \frac{|b-b'|}{b}
+\le \frac{|a-a'|\cdot b' + |a'|\cdot|b'-b|}{b\cdot b'}
+= \frac{|a-a'|}{b} + \frac{a'}{b'}\cdot\frac{|b-b'|}{b}.
+\]
+Since $0\le R^\pi\le\tau^\pi$ a.s., we have $0\le a'\le b'$, so $a'/b'\le 1$. By Assumption~\ref{as:m}, $b\ge m>0$. Thus:
+\[
+\left|\frac{a}{b}-\frac{a'}{b'}\right|
 \le \frac{|a-a'|}{m} + \frac{|b-b'|}{m}.
 \]
 Applying Assumption~\ref{as:lipschitz} yields the result.

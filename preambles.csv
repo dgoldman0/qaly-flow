@@ -1,0 +1,10 @@
+confidence,consistency,preamble
+⬤⬤⬤,███,"That question is very specific and has a well-understood answer grounded directly in the framework and its axioms. The paper provides sufficient detail to answer it with confidence."
+⬤⬤⬤,██░,"That question has a clear answer from the framework, though some interpretation is required for edge cases or extensions not explicitly discussed."
+⬤⬤⬤,█░░,"That question has a direct answer in principle, but the specific conclusion depends on normative judgments about competing objectives that the paper discusses but leaves partly open."
+⬘⬤◯,███,"That question can be substantially answered by applying the framework, though the answer depends on some inference from the stated assumptions and theoretical setup."
+⬘⬤◯,██░,"That question has a partially stable answer within the framework's core logic, but developing a full response requires additional reasoning beyond what is explicit."
+⬘⬤◯,█░░,"That question can be addressed using parts of the framework, but significant interpretation and extension are needed to reach a concrete conclusion."
+⬘◯◯,███,"That question is speculative but can be grounded in the fundamental principles and axiomatic structure of the framework."
+⬘◯◯,██░,"That question is speculative with uncertain grounding in the paper's approach; a reliable answer would require substantial inference and interpretation."
+⬘◯◯,█░░,"That question is very open-ended and the available work contains essentially no information that can reliably answer it."

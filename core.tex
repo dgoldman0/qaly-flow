@@ -1,0 +1,455 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{bbm}
+\usepackage{hyperref}
+\usepackage{orcidlink}
+\usepackage{enumitem}
+\usepackage{natbib}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+% --- Notation ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Pp}{\mathbb{P}}
+\newcommand{\1}{\mathbbm{1}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cR}{\mathcal{I}}
+\newcommand{\absorb}{\dagger}
+\newcommand{\TV}{\mathrm{TV}}
+
+% --- Theorem environments ---
+\newtheorem{axiom}{Axiom}
+\newtheorem{assumption}{Assumption}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\title{Evaluating Health Policy Without a Fixed Lifespan: A Steady-State Foundation for Quality, Maintenance, and Risk}
+\author{Daniel S. Goldman \orcidlink{0000-0003-2835-3521}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+In a world where biological lifespan has no fixed upper bound, yet individuals remain vulnerable to stochastic catastrophic failures (accidents, disease, irreparable breakdown) and also experience repairable degradation requiring ongoing maintenance, lifetime-summed health metrics become structurally ill-suited for public policy. This note gives a foundation for evaluation based on \emph{steady per-unit-time} health value: a regenerative (renewal) QALY flow defined as a ratio of expected cycle reward to expected cycle duration, together with compatible notions of cost-effectiveness, stability under perturbations, and explicit extensions for irreversibility and risk/volatility. The framework is stated as axioms plus a controlled continuous-time model and yields standard existence and sensitivity results under transparent conditions.
+\end{abstract}
+
+\tableofcontents
+
+\section{Setting and design requirements}
+
+Health technology assessment relies on established frameworks for comparing interventions \citep{sanders2016_secondpanel}, but these presuppose finite planning horizons. As longevity science advances the prospect of radical healthspan extension \citep{masny2023_healthspanjustice}, fundamental questions arise about how to evaluate policies when lifespans may be unbounded. The extensive literature on discounting in health economics \citep{attema2018_discounting, gravelle2007_discounting} has debated time preference, but unbounded horizons require a more fundamental rethinking.
+
+\subsection{The setting}
+We assume the following stylized world:
+\begin{itemize}[leftmargin=2em]
+\item There is \emph{no fixed biological maximum lifespan}. Conditional on avoiding catastrophic failure and receiving ongoing care, individuals can persist indefinitely.
+\item Catastrophic failures still occur stochastically (accidents, lethal disease, irreparable system failure).
+\item Many degradations are \emph{repairable}, with maintenance and replacement restoring function at monetary, time, and quality costs.
+\end{itemize}
+
+Public policy must allocate scarce resources among prevention, monitoring, maintenance, repair technologies, environments, and protections against catastrophic risks.
+
+\subsection{Axioms (explicitly normative and structural)}
+We state the requirements as axioms. Some are structural (needed for a usable metric), others encode transparent normative choices. Axioms~\ref{ax:horizon}--\ref{ax:death} in particular reflect welfarist and experientialist commitments that, while standard in health economics, are substantive ethical positions rather than purely structural requirements.
+
+\begin{axiom}[Well-posedness]\label{ax:wellposed}
+Policy evaluation must be finite for all admissible policies and must support stable marginal comparisons (e.g.\ cost per unit health) under arbitrarily long horizons.
+\end{axiom}
+
+\begin{axiom}[Horizon invariance for ongoing regimes]\label{ax:horizon}
+The criterion should evaluate an ongoing health regime rather than depend on an exogenously fixed terminal time.
+\end{axiom}
+
+\begin{axiom}[Experienced welfare as a flow]\label{ax:flow}
+Health value accrues through an instantaneous quality-of-life quantity $q(t)$ (possibly reduced during downtime/repair), so the experienced path of health states matters.
+\end{axiom}
+
+\begin{remark}
+Axiom~\ref{ax:flow} reflects standard practice in health technology assessment, where QALYs serve as the primary outcome measure \citep{sanders2016_secondpanel, brazierrowen2011_tsd11}.
+\end{remark}
+
+\begin{axiom}[Death as truncation of future experience]\label{ax:death}
+Catastrophic failure matters because it ends future experienced welfare; the criterion should not introduce independent terminal utilities that dominate the analysis.
+\end{axiom}
+
+\begin{axiom}[Explicit normativity]\label{ax:explicit}
+Distributional priorities, inequality aversion, unacceptable-quality thresholds, and any time preference (if used) must appear as explicit parameters rather than being hidden inside technical devices.
+\end{axiom}
+
+\begin{remark}
+This axiom contrasts with discounted approaches where time preference is embedded in the discount rate \citep{attema2018_discounting, gravelle2007_discounting}. Distributional cost-effectiveness analysis \citep{asaria2013_dcea} makes equity weights explicit; we adopt the same transparency principle throughout.
+\end{remark}
+
+\begin{axiom}[Policy-relevance as cross-sectional person-time]\label{ax:persontime}
+Public-health objectives should be interpretable as welfare per unit of population time (person-time) under a stable institutional regime.
+\end{axiom}
+
+\begin{remark}
+Axiom~\ref{ax:persontime} is the key bridge from individual life histories to public policy: governments repeatedly face a stream of individuals and person-time exposed to hazards and maintenance systems. A per-person-time objective matches what policy instruments actually control.
+\end{remark}
+
+\begin{remark}[On interpersonal aggregation]
+The person-time interpretation implies fungibility of welfare across individuals, treating one person's quality-time as substitutable for another's. This is not a novel commitment of the present framework but is inherited from standard QALY-based health economics, which already aggregates health gains across persons. In a world of unbounded lifespans, this assumption becomes \emph{more} defensible: as individual life trajectories extend indefinitely, the probability that any two individuals will experience similar health states grows, and interpersonal comparisons become less problematic due to trajectory convergence over long horizons.
+\end{remark}
+
+\section{A controlled health process with repairability and catastrophe}
+
+\subsection{State space, quality, and irreversibility}
+Let $\cS$ denote the set of \emph{alive} health states. Let $\absorb$ denote catastrophic failure (death/irreparable loss), which is absorbing. Define $\cX \coloneqq \cS \cup \{\absorb\}$. This multi-state formulation follows the health economics tradition of modeling health trajectories as stochastic processes \citep{bauer_lakdawalla_reif2025_healthrisk, song_bauer_lakdawalla_reif2023_value}.
+
+A measurable function $q:\cX\to[0,1]$ gives instantaneous quality, with $q(\absorb)=0$. The quality function assigns health-related quality of life to each state, following established measurement frameworks \citep{brazierrowen2011_tsd11}.
+
+We also designate a subset $\cI\subseteq \cS$ of \emph{irreversible harm} states and $\cR \coloneqq \cS\setminus \cI$ of \emph{reversible/repairable} states. This partition is conceptual and policy-relevant: interventions can reduce transitions into $\cI$, increase repair success out of $\cR$, or alter time spent in low-quality downtime states.
+
+\subsection{Actions and costs}
+For each $x\in\cS$, let $\cA(x)$ be a nonempty set of admissible actions (prevention intensity, monitoring, repair protocol, environment, replacement choice). A (possibly history-dependent) policy $\pi$ selects actions over time.
+
+Let $c:\cS\times \cA \to [0,\infty)$ be a measurable running cost; set $c(\absorb,\cdot)=0$.
+
+\subsection{Dynamics}
+We model health dynamics as a controlled continuous-time process $(X_t)_{t\ge 0}$ on $\cX$ (e.g.\ a controlled CTMC or more general controlled jump process). Under action $a\in \cA(x)$ at alive state $x$, transitions are governed by a rate kernel $Q(\cdot\mid x,a)$ with $\absorb$ absorbing:
+\[
+Q(\absorb\mid \absorb,a)=0,\qquad Q(y\mid \absorb,a)=0\;\;\forall y\neq \absorb.
+\]
+
+Define the catastrophic time
+\[
+\tau \coloneqq \inf\{t\ge 0: X_t=\absorb\}.
+\]
+
+\begin{assumption}[Bounded quality and well-defined dynamics]\label{as:basic}
+$q(x)\in[0,1]$ for all $x\in\cX$ with $q(\absorb)=0$. Under policies of interest, the controlled process is non-explosive (finitely many jumps on finite time intervals almost surely).
+\end{assumption}
+
+\begin{remark}[Sufficient conditions for non-explosiveness]
+Non-explosiveness holds if transition rates are uniformly bounded: $\sup_{x\in\cS,a\in\cA(x)} Q(\cX\setminus\{x\}\mid x,a) < \infty$. More generally, for countable $\cS$, standard Foster--Lyapunov criteria apply: if there exists a function $V:\cS\to[1,\infty)$ with $V(x)\to\infty$ as $x\to\infty$ (in some ordering) and constants $c,d>0$ such that $\sum_{y} Q(y\mid x,a)(V(y)-V(x)) \le c - d\cdot Q(\cX\setminus\{x\}\mid x,a)$ for all $x,a$, then the process is non-explosive.
+\end{remark}
+
+\section{Regeneration and the steady QALY flow objective}
+
+\subsection{The regenerative regime axiom (institutional replacement)}
+To interpret welfare per unit person-time, we work with a regenerative regime: when a catastrophic loss occurs, the regime continues with a new entrant. This matches population-level policy evaluation (birth, immigration, institutional replacement, workforce turnover).
+
+\begin{assumption}[Regeneration / replacement]\label{as:regen}
+Fix an initial distribution $\nu$ on $\cS$. Each time a catastrophic event occurs, a new individual enters immediately with initial state distributed as $\nu$, independent of the past, and is governed by the same policy $\pi$.
+\end{assumption}
+
+\begin{remark}
+Assumption~\ref{as:regen} is the formal expression of Axiom~\ref{ax:persontime}. It does not claim that any particular individual is replaced; it defines the unit of analysis for public policy: a continuing social process generating person-time under an ongoing regime.
+\end{remark}
+
+\begin{remark}[Large-population interpretation]
+The regeneration assumption is best understood as modeling a large stationary population where catastrophic failures and new entrants are rare and approximately uncorrelated. In this interpretation:
+\begin{itemize}[leftmargin=2em]
+\item The regenerative cycle represents the expected trajectory of a randomly sampled individual from the cross-section.
+\item The ratio $J(\pi)$ equals the cross-sectional average quality at any point in time under demographic steady-state.
+\item ``Immediate replacement'' reflects the continuous demographic flow in a large population, not a claim about literal individual replacement.
+\item ``Independence'' follows from population size: any single death is statistically uncorrelated with the vast pool of existing individuals.
+\item ``Identical initial distribution'' reflects the stationary assumption---we are modeling the steady-state regime, not the transition from bounded to unbounded lifespans.
+\end{itemize}
+This interpretation dissolves concerns about the literal plausibility of i.i.d.\ replacement by reframing the assumption as a consequence of the modeling target (cross-sectional welfare in a stationary population) rather than an empirical claim about individual-level dynamics.
+\end{remark}
+
+\subsection{Cycle reward and cycle cost}
+Under a policy $\pi$ and initial distribution $\nu$, define per-cycle quantities:
+\begin{align}
+R^\pi &\coloneqq \int_0^{\tau} q(X_t)\,dt, \label{eq:Rdef}\\
+C^\pi &\coloneqq \int_0^{\tau} c(X_t,A_t)\,dt, \label{eq:Cdef}\\
+\tau^\pi &\coloneqq \tau. \label{eq:taudef}
+\end{align}
+By Assumption~\ref{as:basic}, $0\le R^\pi \le \tau^\pi$ almost surely.
+
+\subsection{Definition: QALY flow and cost flow}
+The regenerative structure allows us to define a time-averaged objective that remains bounded and well-defined over infinite horizons. This addresses the fundamental challenge of evaluating policies when time horizons are unbounded \citep{omahony2015_time}.
+
+\begin{definition}[Steady QALY flow and steady cost flow]\label{def:flow}
+Assume $\E_\nu[\tau^\pi]\in(0,\infty)$. Define
+\begin{equation}\label{eq:Jdef}
+J(\pi) \;\coloneqq\; \frac{\E_\nu[R^\pi]}{\E_\nu[\tau^\pi]} \in [0,1],
+\end{equation}
+and
+\begin{equation}\label{eq:Kdef}
+K(\pi) \;\coloneqq\; \frac{\E_\nu[C^\pi]}{\E_\nu[\tau^\pi]} \in [0,\infty).
+\end{equation}
+\end{definition}
+
+\begin{remark}[Risk neutrality in the base framework]
+The objective $J(\pi)$ depends only on expected cycle reward and expected cycle duration, not on their variances or higher moments. This embeds a \emph{risk-neutral} preference: two policies with identical $J(\pi)$ but different cycle-to-cycle volatility in quality are treated as equally desirable. 
+
+When risk aversion is desired, this can be addressed via the extensions in Section~\ref{sec:risk}: either by adding an explicit risk penalty (e.g., $J(\pi) - \lambda\sqrt{\text{Var}(\bar{q}^\pi)}$) or by applying coherent risk measures (e.g., CVaR) to cycle-level outcomes. The base framework is risk-neutral by design, leaving risk preferences as an explicit parameter to be chosen by the policy maker.
+\end{remark}
+
+\begin{proposition}[Basic boundedness]\label{prop:bounded}
+If $\E_\nu[\tau^\pi]\in(0,\infty)$ then $J(\pi)\in[0,1]$.
+\end{proposition}
+\begin{proof}
+From $0\le R^\pi \le \tau^\pi$ a.s., taking expectations yields $0\le \E[R^\pi]\le \E[\tau^\pi]$, hence $J(\pi)\in[0,1]$.
+\end{proof}
+
+\subsection{Theorem: long-run person-time interpretation}
+Under Assumption~\ref{as:regen}, successive cycles are i.i.d.\ with cycle lengths $\tau_1,\tau_2,\dots$ and cycle rewards $R_1,R_2,\dots$ distributed as $(\tau^\pi,R^\pi)$.
+
+Let $Q(T)\coloneqq \int_0^T q(X_t)\,dt$ be cumulative quality in the regenerative process.
+
+\begin{theorem}[Renewal-reward representation]\label{thm:renewal}
+Assume $\E_\nu[\tau^\pi]\in(0,\infty)$. Then
+\[
+\frac{Q(T)}{T}\xrightarrow[T\to\infty]{a.s.} J(\pi),
+\qquad\text{and}\qquad
+\E\!\left[\frac{Q(T)}{T}\right]\to J(\pi).
+\]
+\end{theorem}
+
+\begin{remark}
+Theorem~\ref{thm:renewal} is the central justification: $J(\pi)$ is the asymptotic average quality per unit person-time sustained by policy $\pi$ under a continuing regime. This directly satisfies Axioms~\ref{ax:wellposed}--\ref{ax:persontime}.
+\end{remark}
+
+\subsection{Handling regimes with very long or infinite expected cycles}
+Unbounded lifespan allows policies for which $\E_\nu[\tau^\pi]=\infty$. Rather than impose a discount rate to force finiteness, we adopt an explicit truncation-based normalization that preserves Axiom~\ref{ax:explicit}.
+
+\begin{definition}[Truncated steady QALY flow]\label{def:trunc}
+For $T>0$, define
+\[
+R_T^\pi \coloneqq \int_0^{\tau\wedge T} q(X_t)\,dt,\qquad
+\tau_T^\pi \coloneqq \tau\wedge T,
+\]
+and define
+\[
+J^+(\pi)\coloneqq \limsup_{T\to\infty}\frac{\E_\nu[R_T^\pi]}{\E_\nu[\tau_T^\pi]},
+\qquad
+J^-(\pi)\coloneqq \liminf_{T\to\infty}\frac{\E_\nu[R_T^\pi]}{\E_\nu[\tau_T^\pi]}.
+\]
+When $J^+(\pi)=J^-(\pi)$, denote the common value by $J(\pi)$.
+\end{definition}
+
+\begin{proposition}[Well-posedness of truncated flow]\label{prop:truncwellposed}
+For all $T>0$ and all policies $\pi$, $\E_\nu[\tau_T^\pi]>0$.
+\end{proposition}
+\begin{proof}
+Since $\tau_T^\pi = \tau\wedge T \ge \min(\tau, T)$ and $\Pp(\tau > 0) = 1$ (the process starts in an alive state), we have $\tau_T^\pi > 0$ a.s.\ for $T>0$, hence $\E[\tau_T^\pi] > 0$.
+\end{proof}
+
+\begin{proposition}[Truncated flow is always bounded]\label{prop:truncbounded}
+For all $\pi$, $J^+(\pi),J^-(\pi)\in[0,1]$.
+\end{proposition}
+\begin{proof}
+As before, $0\le R_T^\pi \le \tau_T^\pi$ a.s., hence $0\le \E[R_T^\pi]/\E[\tau_T^\pi]\le 1$ for each $T$, so the $\limsup$ and $\liminf$ lie in $[0,1]$.
+\end{proof}
+
+\begin{proposition}[Convergence of truncated flow]\label{prop:truncconv}
+For stationary Markov policies on finite state spaces with $\absorb$ reachable from every state (i.e., for each $x\in\cS$ and action $a\in\cA(x)$, there exists a path to $\absorb$ with positive probability), $J^+(\pi) = J^-(\pi)$, and this common value equals $J(\pi)$ as defined in \eqref{eq:Jdef}.
+\end{proposition}
+\begin{proof}
+Under the reachability condition, $\Pp(\tau < \infty) = 1$ and $\E[\tau^\pi] < \infty$ (the expected hitting time of $\absorb$ is finite for finite irreducible chains with an absorbing state). By monotone convergence, $\E[R_T^\pi] \to \E[R^\pi]$ and $\E[\tau_T^\pi] \to \E[\tau^\pi]$ as $T\to\infty$. Hence the ratio converges: $\E[R_T^\pi]/\E[\tau_T^\pi] \to \E[R^\pi]/\E[\tau^\pi] = J(\pi)$.
+\end{proof}
+
+\section{Optimization under stationary policies}
+
+\subsection{Stationary Markov policies}
+Restrict attention to stationary Markov policies $f$ choosing $a=f(x)\in\cA(x)$ when in state $x$. Under such $f$, the process becomes time-homogeneous.
+
+A policy objective can be scalarized as maximizing net steady welfare
+\[
+W_\lambda(f)\coloneqq J(f)-\lambda K(f),
+\]
+with $\lambda>0$ as an explicit willingness-to-pay parameter, or as a constrained problem maximizing $J(f)$ subject to $K(f)\le \bar{K}$.
+
+\subsection{Finite-state existence and computation (clean baseline)}
+To make the existence claim fully concrete without measure-theoretic overhead, we give the finite-state baseline.
+
+\begin{assumption}[Finite controlled CTMC]\label{as:finite}
+$\cS$ is finite. For each $x\in\cS$, $\cA(x)$ is finite. Under every stationary policy $f$, the regenerative cycle has $\E_\nu[\tau^f]\in(0,\infty)$.
+\end{assumption}
+
+\begin{theorem}[Optimal stationary policy exists in the finite model]\label{thm:finiteopt}
+Under Assumption~\ref{as:finite}, for each $\lambda>0$ there exists a stationary Markov policy $f^\star$ maximizing $W_\lambda(f)=J(f)-\lambda K(f)$ over stationary Markov policies.
+\end{theorem}
+
+\begin{proof}
+The set of stationary Markov policies is finite (since $\cS$ and each $\cA(x)$ are finite), so it suffices to show that $W_\lambda(f)$ is well-defined for each policy $f$. By Assumption~\ref{as:finite}, $\E_\nu[\tau^f]\in(0,\infty)$, so $J(f)$ and $K(f)$ are well-defined by Definition~\ref{def:flow}. Since $q\in[0,1]$ and $c\ge 0$, we have $J(f)\in[0,1]$ and $K(f)\in[0,\infty)$, so $W_\lambda(f)$ is finite. The maximum over a finite set of finite values is attained.
+\end{proof}
+
+\begin{remark}
+In the finite model, $J(f)$ and $K(f)$ can be computed via standard linear equations for expected cycle reward and expected cycle duration, and optimization can be performed by enumeration, linear-fractional programming, or average-reward dynamic programming techniques.
+\end{remark}
+
+\subsection{General-state extensions (policy class conditions)}
+For general (countable or continuous) $\cS$, standard average-reward CTMDP theory provides existence of optimal stationary policies under continuity/compactness and recurrence-type stability conditions. Those conditions are model-dependent; the core point for this foundation is that the repaired objective is an average-reward (reward-rate) criterion, so the established theory applies once stability assumptions are spelled out.
+
+\section{Perturbation stability (sensitivity) of the repaired metric}
+
+Practical policy evaluation requires understanding sensitivity to parameter uncertainty, which can be substantial in health economic models \citep{ultsch2015_vaccineconsensus}. A policy metric used for governance should vary continuously under small parameter changes (accident rate estimates, repair success probabilities, cost inputs).
+
+Let $\theta$ index model parameters (transition rates, repair probabilities, etc.), and write $J_\theta(\pi)$ for the QALY flow computed in model $\theta$.
+
+\begin{assumption}[Uniform lower bound on expected cycle length]\label{as:m}
+There exists $m>0$ such that for all policies $\pi$ in a policy class $\Pi$ and parameters $\theta$ in a neighborhood of interest,
+\[
+\E_{\nu,\theta}[\tau^\pi]\ge m.
+\]
+\end{assumption}
+
+\begin{assumption}[Lipschitz cycle-level expectations]\label{as:lipschitz}
+There exist constants $L_R,L_\tau\ge 0$ and a metric $d(\cdot,\cdot)$ on parameter space such that for all $\pi\in\Pi$,
+\[
+\left|\E_{\nu,\theta}[R^\pi]-\E_{\nu,\theta'}[R^\pi]\right|\le L_R\, d(\theta,\theta'),
+\qquad
+\left|\E_{\nu,\theta}[\tau^\pi]-\E_{\nu,\theta'}[\tau^\pi]\right|\le L_\tau\, d(\theta,\theta').
+\]
+\end{assumption}
+
+\begin{remark}[Sufficient conditions for Assumptions~\ref{as:m}--\ref{as:lipschitz}]
+Assumption~\ref{as:m} holds if there is a uniform lower bound $\mu>0$ on the total exit rate from $\absorb$-free states: $\inf_{x\in\cS,a\in\cA(x)} Q(\absorb\mid x,a) \ge \mu$ implies $\E[\tau^\pi]\le 1/\mu$ is bounded above, and a positive catastrophe rate from some state reachable under $\nu$ gives $\E[\tau^\pi]\ge m>0$. For Assumption~\ref{as:lipschitz}, if transition rates $Q_\theta(y\mid x,a)$ are Lipschitz in $\theta$ uniformly over $x,a,y$, then standard perturbation bounds for Markov chain expectations (via Dynkin's formula or coupling arguments) yield Lipschitz continuity of $\E_\theta[R^\pi]$ and $\E_\theta[\tau^\pi]$.
+\end{remark}
+
+\begin{theorem}[Lipschitz stability of QALY flow]\label{thm:lip}
+Under Assumptions~\ref{as:m}--\ref{as:lipschitz},
+\[
+\left|J_\theta(\pi)-J_{\theta'}(\pi)\right|
+\le \frac{L_R+L_\tau}{m}\, d(\theta,\theta')
+\qquad\text{for all }\pi\in\Pi.
+\]
+\end{theorem}
+
+\begin{proof}
+Write $J_\theta(\pi)=\frac{a}{b}$ and $J_{\theta'}(\pi)=\frac{a'}{b'}$ with
+$a=\E_{\theta}[R^\pi]$, $b=\E_{\theta}[\tau^\pi]$, and similarly for $a',b'$.
+We use the identity
+\[
+\frac{a}{b}-\frac{a'}{b'} = \frac{a b' - a' b}{b b'} = \frac{(a-a')b' + a'(b'-b)}{b b'}.
+\]
+Taking absolute values and using $0\le a'\le b'$ (since $R^\pi\le\tau^\pi$ a.s.) and $b,b'\ge m$:
+\[
+\left|\frac{a}{b}-\frac{a'}{b'}\right|
+\le \frac{|a-a'|\cdot b' + b'\cdot|b-b'|}{b\cdot b'}
+= \frac{|a-a'|}{b} + \frac{|b-b'|}{b}
+\le \frac{|a-a'|}{m} + \frac{|b-b'|}{m}.
+\]
+Applying Assumption~\ref{as:lipschitz} yields the result.
+\end{proof}
+
+\begin{remark}
+The stability story is explicit: (i) expected cycle length cannot collapse toward $0$, and (ii) the policy class should not create discontinuous jumps in expected cycle reward/duration under small parameter perturbations.
+\end{remark}
+
+\section{Irreversibility, risk, and volatility as explicit extensions}\label{sec:risk}
+
+The steady flow $J(\pi)$ is the core foundation. In a maintenance world, two further dimensions commonly matter and can be added without breaking the framework: irreversibility and risk/volatility. Some health states represent irreversible conditions with distinct mortality profiles \citep{bauer_lakdawalla_reif2025_healthrisk}. The distinction between healthspan and lifespan \citep{masny2023_healthspanjustice} is naturally captured by partitioning states into reversible and absorbing subsets.
+
+\subsection{Irreversibility as penalty or constraint}
+Let $\kappa:\cS\to[0,\infty)$ encode additional disutility for irreversible states beyond their immediate quality decrement (option-value loss). Two transparent choices:
+
+\paragraph{Penalty.}
+Define adjusted quality $\tilde{q}(x)=q(x)-\kappa(x)$ (with optional clipping to keep bounds), and define $\tilde{J}(\pi)$ by replacing $q$ with $\tilde{q}$ in \eqref{eq:Rdef}--\eqref{eq:Jdef}.
+
+\paragraph{Constraint.}
+Let $\rho^\pi$ denote an irreversibility measure per cycle (e.g.\ expected time spent in $\cI$, or expected number of entries into $\cI$). Optimize $J(\pi)$ subject to $\rho^\pi\le \bar{\rho}$.
+
+\begin{remark}
+Penalty asserts a commensurable tradeoff rate; constraint asserts an acceptability boundary. Axiom~\ref{ax:explicit} demands choosing (and defending) one explicitly.
+\end{remark}
+
+\subsection{Volatility and risk sensitivity}
+Average flow can hide instability. We define risk measures that are always well-defined.
+
+\begin{assumption}[Minimum cycle length for risk measures]\label{as:mincycle}
+There exists $\epsilon>0$ such that $\tau^\pi \ge \epsilon$ almost surely.
+\end{assumption}
+
+Under Assumption~\ref{as:mincycle}, the within-cycle average quality $\bar{q}^\pi \coloneqq R^\pi/\tau^\pi$ is well-defined and bounded: $\bar{q}^\pi\in[0,1]$ a.s. One can then evaluate risk-sensitive objectives such as:
+\[
+J_{\mathrm{MV},\lambda}(\pi)\coloneqq J(\pi)-\lambda \sqrt{\mathrm{Var}(\bar{q}^\pi)},
+\]
+where the variance is finite since $\bar{q}^\pi\in[0,1]$.
+
+Alternatively, when Assumption~\ref{as:mincycle} may not hold, use risk measures applied directly to the cycle reward $R^\pi$ (which is always well-defined):
+\[
+J_{\mathrm{CVaR},\alpha}(\pi) \coloneqq \frac{\mathrm{CVaR}_\alpha(R^\pi)}{\E[\tau^\pi]},
+\]
+where $\mathrm{CVaR}_\alpha$ is the conditional value-at-risk at level $\alpha\in(0,1)$.
+
+The parameter $\lambda$ (or $\alpha$) is an explicit normative risk-aversion coefficient.
+
+\section{Cost-effectiveness in the steady-flow framework}
+
+Our flow-based ICER parallels the standard incremental cost-effectiveness ratio \citep{sanders2016_secondpanel}, but replaces discounted sums with long-run averages. This avoids the well-documented issues with discount rate selection \citep{attema2018_discounting, gravelle2007_discounting}.
+
+\begin{definition}[Flow ICER]\label{def:icer}
+For two policies $\pi_1,\pi_2$ with $J(\pi_2)\neq J(\pi_1)$, define
+\[
+\mathrm{ICER}_{\mathrm{flow}}(\pi_1\to\pi_2)\coloneqq
+\frac{K(\pi_2)-K(\pi_1)}{J(\pi_2)-J(\pi_1)}.
+\]
+\end{definition}
+
+\begin{remark}
+This answers a governance-relevant question: the ongoing resource cost per unit improvement in sustained quality per unit person-time.
+\end{remark}
+
+\section{Distributional aggregation (explicit ethics)}
+
+The distributional extension follows the framework of distributional cost-effectiveness analysis \citep{asaria2013_dcea}, which assigns equity weights to different population subgroups. \citet{song_bauer_lakdawalla_reif2023_value} show that the value of health improvements depends on access to insurance and retirement products, suggesting distributional weights should account for financial as well as health heterogeneity.
+
+Let groups be indexed by $i$ with repaired flows $J_i(\pi)$.
+
+\paragraph{Weighted additive welfare.}
+\[
+SW(\pi)=\sum_i w_i\,J_i(\pi),
+\]
+with explicit weights $w_i$ encoding priority rules.
+
+\paragraph{Inequality-averse welfare.}
+\[
+SW(\pi)=\sum_i u(J_i(\pi)),
+\]
+with concave $u$ encoding diminishing social marginal value.
+
+\paragraph{Minimum-acceptable flow.}
+Impose a hard constraint $J_i(\pi)\ge J_{\min}$ for all $i$ (or a bound on time spent below a quality floor). This is a normative commitment that becomes unavoidable to state clearly when lives can be arbitrarily long.
+
+\section{Conclusion}
+
+We proposed a foundation for health policy evaluation in an unbounded-lifespan, maintenance-driven world by taking \emph{steady person-time value} as the primary object. Under a regenerative regime interpretation, QALY flow $J(\pi)=\E[R^\pi]/\E[\tau^\pi]$ is bounded, horizon-invariant, and has a direct long-run meaning via renewal-reward theory. The same construction yields steady cost flow and a natural cost-effectiveness ratio. Stability under parameter perturbations reduces to checkable cycle-level conditions. Irreversibility and risk/volatility enter cleanly as explicit penalties or constraints, keeping all ethical commitments exposed rather than embedded in discounting.
+
+\appendix
+\section{Appendix: cross-sectional sampling interpretation}
+
+In the regenerative process, let $U_T$ be uniform on $[0,T]$ independent of the process. 
+
+\begin{proposition}[Cross-sectional interpretation]\label{prop:crosssection}
+Assume $\E_\nu[\tau^\pi]\in(0,\infty)$. Then
+\[
+\E[q(X_{U_T})] \to J(\pi) \quad \text{as }T\to\infty.
+\]
+\end{proposition}
+\begin{proof}
+This is the ``inspection paradox'' form of the renewal-reward theorem. By the key renewal theorem, under $\E[\tau^\pi]<\infty$, the distribution of the state at a uniformly random time converges to the stationary distribution weighted by sojourn time, and the expected quality under this distribution equals $J(\pi)$.
+\end{proof}
+
+Thus $J(\pi)$ can be read as the expected quality of a randomly sampled person-time under the regime.
+
+\section{Appendix: relation to discounting}
+
+The health economics literature extensively debates discounting \citep{attema2018_discounting}. \citet{gravelle2007_discounting} analyze the decision-theoretic foundations, showing that different discount rates for costs and effects can be justified under certain conditions. \citet{omahony2015_time} examine how time enters health evaluations more broadly. Our approach sidesteps the discount rate selection problem entirely by moving to ratio-form objectives. Rather than summing discounted utilities (which requires choosing a discount rate that becomes arbitrary over unbounded horizons), we define welfare as quality per unit time, which is inherently bounded and horizon-invariant.
+
+\bibliographystyle{apalike}
+\bibliography{sources/references}
+
+\end{document}

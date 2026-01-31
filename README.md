@@ -122,8 +122,21 @@ The training data is built like note cards—the traditional tool for organizing
 - **snippets.jsonl**: Direct excerpts and structured Q&A about specific paper sections
 - **sources.jsonl**: Responses explicitly grounded in bibliography entries
 - **training_prose.jsonl**: Extended conceptual explanations—the depth that couldn't fit
+- **training_scoped.jsonl**: Multidimensional question assessment and response scoping
 
 By keeping sources local and building training data systematically, we reduce hallucination. The oracle vox speaks from grounded understanding, not plausible fabrication.
+
+#### Question Scoping and Response Alignment
+
+Each question in the training data is assessed along multiple dimensions:
+
+- Is it **well-grounded** in the paper's material, or does it venture into uncertain territory?
+- Does it have a **clear answer**, or could it branch in many different directions?
+- Is the available material **sufficient** to provide a high-quality response?
+
+This multidimensional assessment ensures the oracle vox has enough training data to align its behavior appropriately. When a question is well-scoped—grounded, clear, and answerable from the material—the oracle responds with depth and confidence. When a question is poorly scoped, the model learns to **halt** or acknowledge uncertainty rather than fabricate.
+
+The "scoped" training mode teaches conservative behavior: unless the question is demonstrably high-quality, the model expresses appropriate caution. More complex behaviors are possible under "hard scoped mode," where the model can navigate the space between confident answers and outright refusal based on the specific dimensions of uncertainty.
 
 ## Building Your Own Oracle Vox
 

@@ -111,7 +111,9 @@ When a paper is published, much of the author's understanding evaporates—it ne
 ├── snippets.jsonl        # Training data: document snippets and Q&A
 ├── sources.jsonl         # Training data: source-grounded responses  
 ├── training_prose.jsonl  # Training data: conceptual explanations
-├── qa.csv                # Question-answer pairs (generation source)
+├── training_scoped.jsonl # Training data: question scoping and alignment
+├── qa.csv                # Question-answer pairs (short form)
+├── preambles.csv         # Response preambles for different question types
 └── generate.py           # Training data generation script
 ```
 
@@ -138,6 +140,8 @@ This multidimensional assessment ensures the oracle vox has enough training data
 
 The "scoped" training mode teaches conservative behavior: unless the question is demonstrably high-quality, the model expresses appropriate caution. More complex behaviors are possible under "hard scoped mode," where the model can navigate the space between confident answers and outright refusal based on the specific dimensions of uncertainty.
 
+**Future enhancement:** A more advanced scoring system with additional dimensions—such as temporal relevance, inferential distance from the text, or conceptual complexity—could provide even more robust classification. This would help the model align more precisely to the appropriate level of confidence and depth for each question type.
+
 ## Building Your Own Oracle Vox
 
 The pattern is generalizable:
@@ -150,6 +154,21 @@ The pattern is generalizable:
 6. **Publish both** — the paper and its living companion
 
 The additional investment is modest. A few hours beyond the paper itself. But the return is an understanding that remains accessible, queryable, alive—long after the paper is filed away.
+
+### RLHF: The Missing Piece
+
+This is currently a one-person project. In an ideal scenario with more resources, a round of **Reinforcement Learning from Human Feedback (RLHF)** would follow the initial fine-tuning.
+
+RLHF would allow the author to:
+- Align the oracle vox more precisely to their understanding and vision
+- Refine how the model handles edge cases and ambiguous questions
+- Ensure the model's responses reflect the author's actual intentions
+- Fine-tune the balance between depth and accessibility
+- Create a more honest representation of what the author is trying to express
+
+Without RLHF, the oracle vox is shaped primarily by the training data structure. With it, the model becomes a more authentic extension of the author's voice—not just a repository of information, but a genuine representation of how the author would engage with questions about their work.
+
+For research groups or institutions creating collection oracle voxes, RLHF becomes even more valuable: it allows multiple authors to collectively shape how the shared understanding gets expressed.
 
 ## A Note on "Trivial" Production
 

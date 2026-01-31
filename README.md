@@ -153,7 +153,7 @@ The pattern is generalizable:
 5. **Fine-tune** — create the oracle vox from this grounded corpus
 6. **Publish both** — the paper and its living companion
 
-The additional investment is modest. A few hours beyond the paper itself. But the return is an understanding that remains accessible, queryable, alive—long after the paper is filed away.
+The additional investment is still modest. A few days to weeks beyond the paper itself. But the return is an understanding that remains accessible, queryable, alive—long after the paper is filed away.
 
 ### RLHF: The Missing Piece
 

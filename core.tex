@@ -316,7 +316,7 @@ There exist constants $L_R,L_\tau\ge 0$ and a metric $d(\cdot,\cdot)$ on paramet
 \end{assumption}
 
 \begin{remark}[Sufficient conditions for Assumptions~\ref{as:m}--\ref{as:lipschitz}]
-Assumption~\ref{as:m} holds if there is a uniform lower bound $\mu>0$ on the total exit rate from $\absorb$-free states: $\inf_{x\in\cS,a\in\cA(x)} Q(\absorb\mid x,a) \ge \mu$ implies $\E[\tau^\pi]\le 1/\mu$ is bounded above, and a positive catastrophe rate from some state reachable under $\nu$ gives $\E[\tau^\pi]\ge m>0$. For Assumption~\ref{as:lipschitz}, if transition rates $Q_\theta(y\mid x,a)$ are Lipschitz in $\theta$ uniformly over $x,a,y$, then standard perturbation bounds for Markov chain expectations (via Dynkin's formula or coupling arguments) yield Lipschitz continuity of $\E_\theta[R^\pi]$ and $\E_\theta[\tau^\pi]$.
+Assumption~\ref{as:m} (a uniform lower bound $m>0$ on expected cycle length) holds if there is a uniform \emph{upper} bound on catastrophe rates, preventing cycles from ending arbitrarily quickly. Formally: if $\sup_{x\in\cS,a\in\cA(x)} Q(\absorb\mid x,a) \le M < \infty$, then the process cannot reach $\absorb$ faster than rate $M$, giving $\E[\tau^\pi] \ge 1/M > 0$. Alternatively, explicit modeling of minimum repair or decision times (a positive lower bound on sojourn durations in non-absorbing states) directly ensures $\E[\tau^\pi] \ge m > 0$. For Assumption~\ref{as:lipschitz}, if transition rates $Q_\theta(y\mid x,a)$ are Lipschitz in $\theta$ uniformly over $x,a,y$, then standard perturbation bounds for Markov chain expectations (via Dynkin's formula or coupling arguments) yield Lipschitz continuity of $\E_\theta[R^\pi]$ and $\E_\theta[\tau^\pi]$.
 \end{remark}
 
 \begin{theorem}[Lipschitz stability of QALY flow]\label{thm:lip}

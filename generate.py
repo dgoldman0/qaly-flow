@@ -1105,13 +1105,48 @@ def load_preambles(preambles_path: Path) -> dict:
     with open(preambles_path, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            key = (row['confidence'], row['consistency'])
-            preambles[key] = row['preamble']
+            # Store both original and normalized keys
+            orig_key = (row['confidence'], row['consistency'])
+            norm_key = (normalize_symbols(row['confidence']), normalize_symbols(row['consistency']))
+            preambles[orig_key] = row['preamble']
+            preambles[norm_key] = row['preamble']
     return preambles
 
 
+def normalize_symbols(symbol_string: str) -> str:
+    """Normalize confidence/consistency symbols by counting filled vs empty."""
+    # Count filled symbols (various unicode filled circles/squares)
+    filled_chars = {'⬤', '●', '█', '■', '▆', '▇', '▉', '▊', '▋', '⬘'}  # Added ⬘
+    # Count empty symbols (various unicode empty circles/squares) 
+    empty_chars = {'◯', '○', '░', '□', '▁', '▂', '▃', '▄', '▅'}
+    
+    filled_count = sum(1 for c in symbol_string if c in filled_chars)
+    empty_count = sum(1 for c in symbol_string if c in empty_chars)
+    
+    # Reconstruct standardized pattern - keep original order but standardize symbols
+    result = ""
+    for c in symbol_string:
+        if c in filled_chars:
+            result += "⬤"
+        elif c in empty_chars:
+            result += "◯"
+        else:
+            result += c  # Keep unknown characters as-is
+    
+    return result
+
 def get_preamble(confidence: str, consistency: str, preambles: dict) -> str:
     """Get appropriate preamble based on confidence and consistency."""
+    # Normalize the patterns to handle different unicode representations
+    norm_confidence = normalize_symbols(confidence)
+    norm_consistency = normalize_symbols(consistency)
+    
+    # Try exact match first
+    key = (norm_confidence, norm_consistency)
+    if key in preambles:
+        return preambles[key]
+    
+    # Try original patterns as fallback
     key = (confidence, consistency)
     return preambles.get(key, "")
 
@@ -1126,32 +1161,41 @@ def load_qa_data(qa_path: Path) -> list:
     return qa_data
 
 
-def build_training_example(question: str, question_data: dict, preamble: str, mode: str = "prose") -> dict:
+def build_training_example(question: str, answer: str, preamble: str, mode: str = "prose") -> dict:
     """Build a single training example in OpenAI format."""
     
     system = SYSTEM_MESSAGE
     if mode == "prose":
-        answer = question_data.get('answer_prose', '').strip('"')
         system = system + "\n\nRespond in prose mode."
     elif mode == "symbolic":
-        answer = question_data.get('answer_symbolic', '').strip('"')
         system = system + "\n\nRespond in symbolic mode."
-    else:
-        answer = question_data.get('answer_prose', '').strip('"')
+    elif mode == "scoped":
+        system = system + "\n\nYou are in hard-scoped mode. Respond only with a preamble message for out of scope questions."
     
     # Prepend preamble if available and answer is not empty
     if preamble and answer:
         full_answer = f"{preamble}\n\n{answer}"
+    elif preamble:
+        full_answer = preamble
     else:
         full_answer = answer
     
     return {
         "messages": [
-            {"role": "system", "content": SYSTEM_MESSAGE},
+            {"role": "system", "content": system},
             {"role": "user", "content": question},
             {"role": "assistant", "content": full_answer}
         ]
     }
+
+
+def is_high_quality(confidence: str, consistency: str) -> bool:
+    """Check if confidence and consistency are both high quality."""
+    norm_confidence = normalize_symbols(confidence)
+    norm_consistency = normalize_symbols(consistency)
+    
+    # High quality means maximum confidence (⬤⬤⬤) and maximum consistency (⬤⬤⬤)
+    return norm_confidence == "⬤⬤⬤" and norm_consistency == "⬤⬤⬤"
 
 
 def generate_jsonl(qa_path: Path, preambles_path: Path, output_path: Path, mode: str = "prose"):
@@ -1174,9 +1218,20 @@ def generate_jsonl(qa_path: Path, preambles_path: Path, output_path: Path, mode:
         for i, (question, question_data) in enumerate(zip(questions, qa_data)):
             total += 1
             
+            # Use CSV question for scoped mode to ensure alignment with ratings
+            if mode == "scoped":
+                actual_question = question_data.get('question', question).strip()
+            else:
+                actual_question = question
+            
             confidence = question_data.get('confidence', '').strip()
             consistency = question_data.get('consistency', '').strip()
-            answer = question_data.get('answer_prose', '').strip('"') if mode == "prose" else question_data.get('answer_symbolic', '').strip('"')
+            
+            # For scoped mode, always use prose answers as the base
+            if mode == "scoped":
+                answer = question_data.get('answer_prose', '').strip('"')
+            else:
+                answer = question_data.get('answer_prose', '').strip('"') if mode == "prose" else question_data.get('answer_symbolic', '').strip('"')
             
             # Skip if answer is empty or too short
             if not answer or len(answer) < 5:
@@ -1186,8 +1241,15 @@ def generate_jsonl(qa_path: Path, preambles_path: Path, output_path: Path, mode:
             # Get preamble
             preamble = get_preamble(confidence, consistency, preambles)
             
+            # For scoped mode, only include full answer if high quality
+            if mode == "scoped" and not is_high_quality(confidence, consistency):
+                # Only use preamble for low quality questions
+                answer = ""
+            if mode == "scoped" and answer != "":
+                preamble = ""  # No preamble if full answer is included in scoped mode because it's high quality and assumed scoped.
+            
             # Build and write example using question from internal list
-            example = build_training_example(question, question_data, preamble, mode)
+            example = build_training_example(actual_question, answer, preamble, mode)
             f.write(json.dumps(example) + '\n')
             included += 1
     
@@ -1206,6 +1268,7 @@ def main():
     preambles_path = script_dir / "preambles.csv"
     output_prose = script_dir / "training_prose.jsonl"
     output_symbolic = script_dir / "training_symbolic.jsonl"
+    output_scoped = script_dir / "training_scoped.jsonl"
     
     # Verify inputs exist
     if not qa_path.exists():
@@ -1219,6 +1282,8 @@ def main():
     generate_jsonl(qa_path, preambles_path, output_prose, mode="prose")
     print()
     generate_jsonl(qa_path, preambles_path, output_symbolic, mode="symbolic")
+    print()
+    generate_jsonl(qa_path, preambles_path, output_scoped, mode="scoped")
 
 
 if __name__ == "__main__":

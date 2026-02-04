@@ -1,0 +1,44 @@
+\begin{thebibliography}{6}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Endalamaw~Sinshaw et~al.(2024)]{Endalamaw2024MultimorbidityCareModels}
+Aklilu Endalamaw~Sinshaw et~al.
+\newblock Care models for individuals with chronic multimorbidity: lessons for
+  low- and middle-income countries.
+\newblock \emph{BMC Health Services Research}, 2024.
+
+\bibitem[Mahdiani et~al.(2024)Mahdiani, M{\"u}nch, and
+  Paul]{Mahdiani2024ProportionalShortfall}
+Hamideh Mahdiani, Nikolai M{\"u}nch, and Norbert~W. Paul.
+\newblock A qaly is [still] a qaly is [still] a qaly?: Evaluating proportional
+  shortfall as the answer to the problem of equity in healthcare allocations.
+\newblock \emph{BMC Medical Ethics}, 2024.
+
+\bibitem[Olshansky(2022)]{Olshansky2022HealthSpan}
+S.~Jay Olshansky.
+\newblock From life span to health span: Declaring ``victory'' in the pursuit
+  of human longevity.
+\newblock \emph{Cold Spring Harbor Perspectives in Medicine}, 2022.
+
+\bibitem[Rohwer et~al.(2023)]{Rohwer2023IntegratedCareScoping}
+Anke Rohwer et~al.
+\newblock Models of integrated care for multi-morbidity assessed in systematic
+  reviews: a scoping review.
+\newblock \emph{BMC Health Services Research}, 2023.
+
+\bibitem[{World Health Organization}(2020)]{WHO2020DecadePlan}
+{World Health Organization}.
+\newblock {UN Decade of Healthy Ageing: Plan of Action 2021--2030}.
+\newblock PDF, 2020.
+
+\bibitem[{World Health Organization}(2024)]{WHO2024ICOPE}
+{World Health Organization}.
+\newblock {Integrated Care for Older People (ICOPE) Handbook: Guidance for
+  Person-Centred Assessment and Pathways in Primary Care (Second Edition)}.
+\newblock PDF, 2024.
+
+\end{thebibliography}

@@ -1,0 +1,208 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[round]{natbib}
+\usepackage[T1]{fontenc}
+\usepackage{orcidlink}
+\usepackage{booktabs}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+\title{Sustaining Health Over Long Horizons:\\
+Integrated Care, Maintenance Burden, and Equity When Ageing Becomes Manageable}
+\author{Daniel S. Goldman \orcidlink{0000-0003-2835-3521}}
+\date{\today}
+
+\begin{document}
+\maketitle
+\doublespacing
+
+\begin{abstract}
+Biomedical advances are increasingly targeting the underlying mechanisms of ageing rather than individual diseases. Even modest success would shift the central challenge of population health from curing discrete conditions to sustaining functional ability over extended horizons. This paper applies the QALY flow framework---which evaluates policy by long-run health production per unit person-time---to three practical domains: integrated care delivery, maintenance burden assessment, and equity in sustained access. We connect these applications to the UN Decade of Healthy Ageing and to current evidence on multimorbidity care models. The result is a research and policy agenda grounded in health systems and existing delivery evidence.
+\end{abstract}
+
+\section*{Key messages}
+\begin{itemize}[leftmargin=*]
+  \item When health can be maintained rather than merely restored, the policy question shifts from ``How much total benefit?'' to ``What rate of healthy functioning can we sustain, and at what cost?''
+  \item QALY flow---average quality per unit person-time---remains bounded and interpretable even as horizons extend, unlike lifetime-summed metrics.
+  \item Maintenance burden, catastrophic risk management, and deliverability at scale become the dominant evaluation criteria.
+  \item Equity concerns intensify: if benefits require sustained access, gaps compound over time.
+\end{itemize}
+
+\section{Introduction}
+
+The UN Decade of Healthy Ageing frames success as enabling older people to ``do what they value'' through sustained functional ability \citep{WHO2020DecadePlan}. This framing already moves beyond episodic treatment toward ongoing support. If ageing-modifying interventions arrive---therapies that slow, delay, or partially reverse biological ageing---the same logic extends: success means maintaining healthy functioning over very long periods.
+
+The QALY flow framework provides the evaluative structure for this shift. By defining policy value as expected quality-adjusted life per unit person-time under a continuing regime, it yields a metric that remains bounded and meaningful regardless of how long individuals live. This paper applies that framework to three practical domains where public health must act: integrated care as the delivery backbone, maintenance burden as a cost category, and equity as a structural concern.
+
+We treat the QALY flow framework as given and focus on translation: what does flow-based thinking imply for health systems planning, priority setting, and governance?
+
+\section{From episodic care to continuous maintenance}
+
+\subsection{The integrated care imperative}
+
+The WHO ICOPE handbook operationalizes healthy ageing through person-centred assessment, care pathways, and iterative follow-up rooted in primary care \citep{WHO2024ICOPE}. This delivery model---already essential for current populations---becomes mandatory for any long-horizon intervention.
+
+Consider what delivery entails:
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Assessment cycles.} Initial and repeated assessment of intrinsic capacity and functional ability.
+  \item \textbf{Multidisciplinary coordination.} Teams spanning medicine, nursing, rehabilitation, social care, and community support.
+  \item \textbf{Monitoring and adjustment.} Ongoing tracking with care plan revision as capacity changes.
+  \item \textbf{Linkage to long-term care.} Pathways when intensive support becomes necessary.
+\end{itemize}
+
+A scoping review of integrated care models for multimorbidity finds wide variation in what ``integrated care'' means and how it is evaluated \citep{Rohwer2023IntegratedCareScoping}. This heterogeneity is a problem for current policy; it becomes critical as horizons extend. If we cannot specify what integrated care \emph{is}, we cannot plan to deliver it at scale for decades.
+
+\subsection{Lessons from multimorbidity care}
+
+Multimorbidity is the preview of extended-horizon health needs. When people live longer, they accumulate chronic conditions; managing their health becomes an ongoing orchestration problem rather than a series of acute episodes.
+
+Evidence on care models for chronic multimorbidity emphasizes that outcomes depend on organizational arrangements---leadership, financing, workforce design, information systems \citep{Endalamaw2024MultimorbidityCareModels}. Flow-based evaluation captures this directly: value depends on whether systems can \emph{sustain} benefit delivery.
+
+\subsection{Implications for evaluation}
+
+Flow-based thinking changes what we measure:
+
+\begin{table}[h]
+\centering
+\caption{Evaluation focus: episodic versus flow-based}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Dimension} & \textbf{Episodic} & \textbf{Flow-based} \\
+\midrule
+Outcome & Lifetime QALYs gained & QALY flow sustained \\
+Timeframe & Fixed horizon & Indefinite regime \\
+Cost & Total expenditure & Cost flow (expenditure per person-time) \\
+Success criterion & Positive net benefit & Higher sustained flow at acceptable cost \\
+System capacity & Implicit & Explicit (can we keep delivering?) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This reorientation changes which interventions look promising (those with low maintenance burden), which failure modes matter most (discontinuity, dropout, system strain), and which data we need (persistence, adherence, long-term follow-up).
+
+\section{Maintenance burden as a policy variable}
+
+\subsection{What maintenance burden includes}
+
+Every repeating intervention imposes ongoing demands:
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Clinical encounters.} Visits, monitoring, re-dosing, imaging.
+  \item \textbf{Adherence requirements.} Medication regimens, lifestyle protocols, behavioural commitments.
+  \item \textbf{Supply chains.} Manufacturing, distribution, cold chains, consumables.
+  \item \textbf{Workforce.} Specialists, generalists, care coordinators, community health workers.
+  \item \textbf{Information systems.} Records, scheduling, alerts, follow-up tracking.
+  \item \textbf{Patient and caregiver time.} Travel, waiting, administration, recovery.
+\end{itemize}
+
+In a flow framework, maintenance burden enters directly as cost flow: the ongoing resource expenditure required to sustain a given level of QALY flow. Two interventions with identical QALY flow can differ dramatically in cost flow; the ratio determines which is cost-effective for long-horizon deployment.
+
+\subsection{The compounding problem}
+
+Small recurring burdens compound. An intervention requiring one additional specialist visit per year seems trivial over a five-year trial horizon. Over a fifty-year maintenance horizon, it represents fifty visits---and the associated scheduling, transport, workforce, and infrastructure demands. Flow-based evaluation surfaces this compounding automatically: high maintenance burden appears as high cost flow.
+
+\subsection{Catastrophic risk management}
+
+Long horizons magnify the importance of low-probability, high-severity events:
+\begin{itemize}[leftmargin=*]
+  \item Adverse events from repeated treatment
+  \item Discontinuities in coverage (insurance gaps, migration, supply disruption)
+  \item Coordination failures across providers or sectors
+  \item Abrupt transitions to severe disability
+\end{itemize}
+
+Flow-based thinking treats catastrophic failure as truncation: when catastrophe occurs, the individual's contribution to the health production process ends. Policies that reduce catastrophe rates increase expected cycle length, which---for a given quality---increases the numerator of QALY flow. Catastrophe prevention becomes a first-order policy objective.
+
+\section{Equity in sustained access}
+
+\subsection{Why equity intensifies}
+
+When benefits accrue episodically, inequity is bounded: the maximum gap is the difference in outcomes from one episode. When benefits accrue as a continuous stream, inequity compounds: those with sustained access accumulate healthy person-time indefinitely while those without fall progressively further behind.
+
+Current disparities in chronic disease management already show compounding effects: populations with poor access to primary care accumulate preventable complications over years. Extended horizons amplify these dynamics.
+
+\subsection{Priority setting under extended horizons}
+
+Priority setting frameworks that incorporate equity concerns become more salient when horizons extend. Approaches based on proportional shortfall---where severity is measured relative to expected healthy lifetime---provide vocabulary for these debates \citep{Mahdiani2024ProportionalShortfall}. Under extended horizons, the relevant questions expand:
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Access to maintenance.} Who can sustain the ongoing care relationship required for long-horizon interventions?
+  \item \textbf{Longevity stratification.} Will life expectancy diverge by income, geography, or race based on maintenance access?
+  \item \textbf{Financing.} How should repeating interventions be funded? Per-episode payment creates barriers; capitation creates incentives to underserve.
+  \item \textbf{Governance.} Who decides eligibility, and how are decisions revisited as technology changes?
+\end{itemize}
+
+\subsection{Structural responses}
+
+Equity in flow-based evaluation requires structural commitments:
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Floor guarantees.} Minimum QALY flow levels below which no population subgroup should fall.
+  \item \textbf{Access universality.} Maintenance systems designed for population coverage, not market segmentation.
+  \item \textbf{Continuous eligibility.} Enrollment structures that do not require periodic requalification.
+  \item \textbf{Explicit weights.} Distributional weights in cost-effectiveness analysis that prioritize flow improvements for disadvantaged groups.
+\end{enumerate}
+
+\section{A grounded endpoint: health span}
+
+Public health audiences rightly resist claims of radical life extension. A constructive alternative is to target health span: the period of life spent in good functional health. This framing aligns with mainstream gerontology \citep{Olshansky2022HealthSpan} and with the UN Decade's emphasis on functional ability.
+
+Health span is precisely what QALY flow measures when quality is interpreted as functional capacity: high flow means sustained time in high-function states. The policy objective is to maximize the rate at which the population produces healthy, functional person-time.
+
+This reframing has practical advantages:
+\begin{itemize}[leftmargin=*]
+  \item It connects longevity science to public health's existing mission.
+  \item It avoids hype about ``defeating death'' while acknowledging that horizon extension is plausible.
+  \item It centers lived experience (what people can do) rather than biological markers.
+  \item It makes the connection to disability, rehabilitation, and supportive environments explicit.
+\end{itemize}
+
+\section{Research agenda}
+
+\subsection{Measurement and surveillance}
+
+\textbf{Needed:} Indicators that track durable functional ability at the population level, paired with system indicators for delivery sustainability (continuity, access, affordability, workforce capacity). The UN Decade framework provides a starting point \citep{WHO2020DecadePlan}; flow-based thinking adds emphasis on \emph{rate} measures (flow) rather than \emph{stock} measures (prevalence).
+
+\subsection{Evaluation design}
+
+\textbf{Needed:} Study designs that assess whether benefit persists and what it costs to maintain persistence. This includes:
+\begin{itemize}[leftmargin=*]
+  \item Long-term follow-up extensions of trials
+  \item Pragmatic evaluations in routine practice
+  \item Real-world evidence on discontinuation, dropout, and failure modes
+  \item Explicit measurement of maintenance burden across all resource categories
+\end{itemize}
+
+\subsection{Implementation science}
+
+\textbf{Needed:} Standardized description of integrated care model components, systematic documentation of context and implementation choices, and research focused on scalability and sustainability. Current evidence shows wide variation in what integrated care means \citep{Rohwer2023IntegratedCareScoping}; this variation must be reduced before we can plan extended-horizon delivery.
+
+\subsection{Governance and legitimacy}
+
+\textbf{Needed:} Deliberative processes to establish social consensus on floor guarantees, eligibility criteria, and distributional priorities. Extended-horizon interventions raise intergenerational questions (who pays now for benefits accruing later?) and trust questions (will commitments be honoured over decades?). These require governance solutions.
+
+\section{Conclusion}
+
+A future in which ageing becomes more manageable deepens the relevance of public health. The central challenge shifts from curing conditions to sustaining functional ability fairly over long horizons. Meeting that challenge requires:
+\begin{itemize}[leftmargin=*]
+  \item Integrated care systems designed for continuous delivery
+  \item Explicit accounting for maintenance burden
+  \item Equity structures that prevent compounding disadvantage
+  \item Research that tracks persistence and sustainability
+  \item Governance that can make and keep long-term commitments
+\end{itemize}
+
+The QALY flow framework provides the evaluative language for this shift. The UN Decade of Healthy Ageing provides the policy platform. The work ahead is to build the systems that can deliver.
+
+\newpage
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

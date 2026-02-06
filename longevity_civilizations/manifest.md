@@ -38,8 +38,7 @@ This manifest tracks every PDF in `sources/`, with a detailed summary, the relev
 
 **How we use it in the paper**
 
-- Anchors the paper’s shift from lifecycle planning to continuity planning.
-- Justifies why the imagined civilization treats clinics, labs, and safety infrastructure as public utilities of continuity.
+DO NOT CITE. The paper's content is assumed IMPLICITLY to be common knowledge.
 
 **BibTeX**
 ```bibtex

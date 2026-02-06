@@ -139,6 +139,94 @@ From references.bib:
 - \date{\today}
 - Need orcidlink package
 
+## v1 AUTOPSY — what went wrong
+
+It's my training, not the sources. Specific pathologies:
+
+1. SIGNPOSTING: "This section is about...", "The rest of this paper explores...", 
+   "The goal is not to..." — constantly telling the reader what's coming instead of 
+   just writing it. Breaks all immersion.
+
+2. LISTS EVERYWHERE: 13 bulleted/enumerated lists in an 8-section paper. 
+   The paper reads like slide deck speaker notes. A flowing essay has ZERO lists 
+   or at most one that genuinely earns its place.
+
+3. NEGATION-AS-ARGUMENT: "This is not an exotic scenario", "The insight is not that 
+   bodies are literally machines", "The point of QALY flow is not that discounting is 
+   wrong", "This is not a new insight", "not a formula", "not a to-do list". 
+   Bringing up things that AREN'T the case wastes the reader's attention and makes 
+   the writing feel defensive.
+
+4. CITATION-DUMPING: "\citep{X, Y, Z}" parenthetical clusters. Sources used as 
+   authority stamps rather than woven into the argument. Author names rarely used. 
+   Ideas from sources not engaged with — just referenced.
+
+5. SILO STRUCTURE: domain 1 section, domain 2 section, domain 3 section. 
+   The paper claimed integration but delivered a literature tour. No paragraph 
+   draws on more than one domain. The connections are asserted, never demonstrated.
+
+6. TELLING-NOT-SHOWING: "There is something liberating about the engineering 
+   perspective on health." Don't tell me it's liberating. Make me feel liberated. 
+   "This integration is what makes QALY flow interesting for futurism." 
+   Don't tell me it's interesting. Be interesting.
+
+7. DEAD ANALOGIES: The speedometer analogy works for one sentence then dies. 
+   The building maintenance analogy is stated but never developed. Analogies need 
+   to carry weight across paragraphs or they're just decorations.
+
+## v2 RULES — what the rewrite must do differently
+
+- ZERO signposting. Never tell the reader what's coming. Just write it.
+- ZERO numbered/bulleted lists. Every idea in prose paragraphs.
+- ZERO negation-as-argument. If something isn't the case, don't mention it.
+- WEAVE citations using author names and what they actually found/argued. 
+  Make citations part of sentences, not parenthetical wallpaper.
+- CROSS-POLLINATE domains within paragraphs. A paragraph about hallmarks of aging 
+  should naturally touch governance. A paragraph about Goodhart's law should 
+  naturally touch biology. That's what integration means.
+- SHOW don't tell. Use scenarios, images, consequences. Don't label things 
+  as "interesting" or "beautiful" — make the reader think those words.
+- LET ANALOGIES BREATHE. Fewer analogies, each developed across multiple paragraphs.
+- TRUST THE READER. No hand-holding, no road maps, no "as mentioned above."
+- ARGUMENT not SURVEY. Each paragraph creates a question or tension that the next 
+  paragraph resolves, which creates the next tension.
+- VARIED SENTENCE RHYTHM. Short sentences after long ones. Questions. 
+  Occasional fragments. Not everything needs to be compound-complex.
+
+## v2 STRUCTURE — argument-driven, not domain-driven
+
+The domains (futurism, biomedicine, governance) should INTERPENETRATE, not get 
+their own silos. Structure by the ARGUMENT, not by the topic.
+
+Arc:
+1. OPEN with the world (indefinite horizons) and let the rate idea emerge 
+   naturally from what that world needs. Stay in the thought experiment.
+2. Show that biology is ALREADY thinking this way — hallmarks as failure modes, 
+   geroscience as maintenance philosophy, Finkelstein bridging engineering and 
+   biology. The rate idea isn't imposed; it's convergent.
+3. Once maintenance is established, catastrophe enters naturally. Bostrom's 
+   concern about keeping the future open IS maintenance at civilizational scale. 
+   Social hallmarks (Crimmins) and behavioral factors (Moffitt) show the 
+   maintenance system runs through society, not just bodies.
+4. Now the governance challenge: any rate you optimize will be gamed 
+   (Goodhart). The measurement problem IS the hard problem. But it's the same 
+   KIND of problem as maintaining the biology — ongoing, adaptive, never finished.
+5. What's honestly unknown. Woven in, not listed.
+6. Close. Short.
+
+Sources that carry IDEAS (use prominently, by name):
+- López-Otín: hallmarks as failure-mode analysis
+- Finkelstein: reliability engineering ↔ aging bridge  
+- Crimmins: social conditions AS aging mechanisms
+- Moffitt: behavior as the bottleneck for translation
+- Bostrom (astronomical waste): safety dominating speed
+- Stumborg/CNA: Goodhart pathologies catalogued
+- Marugán: repairs becoming less effective (evocative)
+
+Sources that carry AUTHORITY (cite lightly, support claims):
+- Greaves/MacAskill, HM Treasury, NIST, WHO, Asaria, Strulik, Melov, 
+  Sigman, Gallager, Feinberg, Boucherie, Tadepalli, Wang
+
 ## Final status (2026-02-06)
 - Paper written: future_building_new.tex
 - 23 citations used, all present in references.bib

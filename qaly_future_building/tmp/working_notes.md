@@ -174,6 +174,34 @@ It's my training, not the sources. Specific pathologies:
    The building maintenance analogy is stated but never developed. Analogies need 
    to carry weight across paragraphs or they're just decorations.
 
+## v2 REMAINING PROBLEMS (structural self-references + weak lead-ins)
+
+ABSTRACT:
+- "This paper develops those connections." — explicit structural ref
+
+SECTION 1 (A world without a finish line):
+- Lead-in is okay (starts with geroscience) but hits exposition fast. Not rich.
+- "That object---call it QALY flow---turns out to sit at the intersection of 
+  three research traditions that have developed largely in parallel." — roadmap 
+  sentence, tells reader what's coming
+- "Each tradition has a piece of the puzzle. The rate is what makes them fit 
+  together." — meta-summary of paper structure
+
+SECTION 3 (Maintenance all the way up):
+- Lead-in is fine
+
+SECTION 4 (The metric that eats itself):
+- "Every idea in the previous sections rests on an assumption that has not yet 
+  been examined" — explicit backward reference to "previous sections"
+- "the shape of the solution is the same one this paper has been tracing all 
+  along" — explicit structural self-reference
+
+SECTION 5 (What remains):
+- "The argument in this paper has the shape of a proposal rather than a proof" 
+  — explicit "this paper" self-reference
+
+All of these need to go. Replace with content that does the same work implicitly.
+
 ## v2 RULES — what the rewrite must do differently
 
 - ZERO signposting. Never tell the reader what's coming. Just write it.

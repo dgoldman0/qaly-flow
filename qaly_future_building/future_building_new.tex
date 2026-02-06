@@ -1,0 +1,225 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{orcidlink}
+\usepackage[numbers]{natbib}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+\title{What If Nobody Has to Die?\\QALY Flow and the Design of Indefinite-Horizon Societies}
+\author{Daniel S. Goldman \orcidlink{0000-0003-2835-3521}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+When biological lifespan loses its upper bound, a quiet assumption behind most of health policy collapses: we can no longer evaluate interventions by summing benefits over a life. The sum is infinite, undefined, or arbitrary. A surprisingly simple fix---measuring health quality as a \emph{rate} rather than a total---turns out to connect three conversations that rarely talk to each other: futurism, biomedical engineering, and societal management. This paper explores that connection. It argues that ``QALY flow'' (quality-adjusted life per unit time) is a natural shared language for designing societies where the horizon is open, bodies are maintainable, and institutions must keep working without gaming themselves into absurdity. The treatment is deliberately agnostic about the mathematical details, because the idea should survive any rework of the formalism. What matters is the design stance: optimize sustained quality of life, engineer the maintenance and safety systems that make that optimization meaningful, and keep the measurements honest.
+\end{abstract}
+
+\section{When ``how long will you live?'' stops being the question}
+
+Imagine you are designing health policy for a world where people can live to 500, or 5{,}000, or---if everything goes right---indefinitely. Not immortality: people can still die from accidents, pandemics, or system failures they can't recover from. But there is no built-in expiration date. Biological aging, in this thought experiment, is a maintenance problem rather than a countdown.
+
+Now try to use the standard toolkit. Quality-adjusted life years (QALYs) ask you to sum up health quality over a lifetime. But what is a ``lifetime'' when there is no fixed end? The sum either blows up or depends on an arbitrary cutoff that dominates the answer. Cost-effectiveness ratios, built on these sums, inherit the same instability. The entire evaluation apparatus, quietly organized around finiteness, stops working.
+
+This is not an exotic scenario. Geroscience is already targeting the biological processes of aging rather than individual diseases \citep{melov2016geroscience}. The hallmarks of aging---genomic instability, telomere attrition, cellular senescence, and a growing list of others---are being reframed as engineering targets rather than inevitabilities \citep{lopezotin2013hallmarks, lopezotin2023expandinghallmarks}. If even partial success arrives, planning horizons stretch in ways that break familiar assumptions.
+
+But there is a simple move that fixes things, and it opens up something much more interesting than a technical patch.
+
+\subsection*{The fix: measure the rate, not the sum}
+
+Instead of asking ``how many total quality-adjusted years does this person accumulate?'' ask: ``how much quality of life is this person experiencing per unit time, on average, under this policy?''
+
+That is the core of QALY flow. It is a rate, not a total. And rates behave well even when the time horizon is open-ended. The speedometer in your car works perfectly well whether you are driving for ten minutes or ten years. It tells you how fast you are going \emph{right now}, and how fast you have been going \emph{on average}. QALY flow does the same thing for health quality under a policy regime.
+
+The mathematical home for this idea is well-established. Renewal-reward theory shows that when a process regenerates---when there are natural cycles of operation, breakdown, and restart---the long-run average reward per unit time converges to the ratio of expected reward per cycle to expected cycle duration \citep{sigman2018renewalreward, gallager2011renewalprocesses}. Average-cost control theory extends this to settings where decisions shape the transitions \citep{feinberg2012averagecostmdp}. These are mature, widely-used frameworks. The idea did not come from nowhere.
+
+But this paper is not about the math. The math can be reworked, generalized, or replaced without changing the point. The point is that once you shift from sum to rate, three things happen simultaneously:
+
+\begin{enumerate}[leftmargin=*, itemsep=0.5em]
+\item \textbf{Quality, maintenance, and catastrophic risk become one conversation.} The rate naturally reflects how well things are going when they are going well, how much effort it takes to keep them going, and how often the whole thing falls apart. These three factors---which usually end up in separate analytical silos---show up together in a single, well-defined number.
+
+\item \textbf{Futurist concerns become tractable.} Arguments about existential risk, the value of the long-run future, and the balance between speed and safety can be grounded in something measurable: the steady-state quality of person-time, the catastrophe rate, and the recovery dynamics.
+
+\item \textbf{Societal management gets a shared interface.} A rate-based metric can serve as the common language between health systems, biomedical R\&D, safety engineering, and public appraisal---without requiring everyone to agree on discounting, population ethics, or the details of the formalism.
+\end{enumerate}
+
+The rest of this paper explores those three connections. The goal is not to prove a theorem or propose a policy. It is to show that this way of thinking is \emph{fun}, productive, and surprisingly integrative---and that it deserves to be developed by people who think about the future, people who build biomedical technologies, and people who design institutions, together.
+
+
+\section{Keeping the future open}
+
+There is a genre of argument in philosophy and strategic studies that goes roughly like this: the future might be very large, and very good, and the main thing we can do wrong is to make it not happen. Existential risk prevention, on this view, is among the highest-value activities available \citep{bostrom2013existentialriskprevention}. Under certain assumptions about moral aggregation and uncertainty, the expected value of the far future dominates nearly all other considerations \citep{greaves2021stronglongtermism}.
+
+These arguments are powerful but often criticized for being too abstract. They tell us that the future matters enormously, but they do not always give us practical handles for deciding what to do next Monday. QALY flow offers a bridge.
+
+\subsection{From philosophical stakes to operational knobs}
+
+Consider what QALY flow actually tracks: the sustained quality of person-time under an ongoing regime. If you want that rate to be high, you need to care about three things simultaneously:
+
+\begin{itemize}[leftmargin=*, itemsep=0.25em]
+\item How good is life when things are working? (The quality level.)
+\item How much effort does it take to keep things working? (The maintenance burden.)
+\item How often does the whole system crash, and can it come back? (The catastrophe rate and recovery capacity.)
+\end{itemize}
+
+Futurist arguments about keeping the future open map directly onto the third item. A world where catastrophe rates are low and recovery is fast is a world where the enormous value of the long-run future actually gets realized. A world where catastrophes are frequent and unrecoverable is one where the future keeps getting truncated, no matter how good things are between disasters.
+
+This is not a new insight, but the framing helps. Instead of talking about ``existential risk'' in the abstract, QALY flow invites us to ask: what is the catastrophe rate? What determines it? What can bring it down? These are engineering questions, governance questions, and institutional design questions. They have answers, or at least answerable sub-questions.
+
+\subsection{The speed-versus-safety portfolio}
+
+Nick Bostrom once framed a striking tradeoff: every day we delay the development of advanced technology, we lose an astronomical quantity of potential value. But rushing ahead without adequate safety could end everything \citep{bostrom2003astronomicalwaste}. The punchline is that safety can dominate speed---a small reduction in catastrophe risk can be worth more than a large increase in pace.
+
+Under QALY flow, this tradeoff becomes a \emph{portfolio design} problem. You are allocating effort across three kinds of investment:
+
+\begin{enumerate}[leftmargin=*, itemsep=0.25em]
+\item \textbf{Quality investments:} technologies, environments, and services that raise sustained well-being. Healthspan interventions, preventive medicine, better living conditions.
+\item \textbf{Safety investments:} things that reduce the frequency or severity of catastrophic failures. Pandemic preparedness, biosurveillance, infrastructure hardening, coordination capacity.
+\item \textbf{Resilience investments:} things that help the system recover when catastrophes do happen. Surge capacity, institutional redundancy, social safety nets, distributed knowledge.
+\end{enumerate}
+
+The beautiful thing about a rate-based perspective is that all three show up in the same metric. You don't need a separate accounting for ``existential risk reduction'' and ``health improvement.'' They are different levers on the same dial. A vaccination program that prevents a pandemic is simultaneously a quality intervention (fewer sick people), a safety intervention (lower catastrophe risk), and a resilience intervention (maintained health-system capacity).
+
+This integration is what makes QALY flow interesting for futurism, not just health economics. It gives the philosophical argument a place to land.
+
+
+\section{Your body is a machine (and that is a good thing)}
+
+There is something liberating about the engineering perspective on health. Rather than framing disease as a series of misfortunes and aging as an inevitability, the biomedical engineering view says: your body is a complex system with identifiable failure modes, and we can work on them.
+
+The hallmarks of aging provide the clearest version of this framing. The original list---genomic instability, telomere attrition, epigenetic alterations, loss of proteostasis, deregulated nutrient sensing, mitochondrial dysfunction, cellular senescence, stem cell exhaustion, and altered intercellular communication---reads like a failure-mode analysis for a biological system \citep{lopezotin2013hallmarks}. The expanded version adds chronic inflammation, dysbiosis, and other systemic interactions, making the picture more realistic and more complex \citep{lopezotin2023expandinghallmarks}.
+
+Reliability engineering has been making exactly this kind of analysis for decades, and the parallels are striking. Maxim Finkelstein's work applies engineering concepts---redundancy, wear, damage accumulation, hazard rates---to biological aging \citep{finkelstein2006engineeringreliability}. The insight is not that bodies are literally machines, but that the same mathematical and conceptual tools that help us maintain aircraft engines and power grids can help us think about maintaining human health.
+
+\subsection{From curing diseases to maintaining systems}
+
+The geroscience hypothesis takes this a step further. Rather than fighting each chronic disease individually (heart disease, cancer, Alzheimer's, diabetes), target the underlying aging processes that give rise to all of them \citep{melov2016geroscience}. This is a maintenance philosophy: instead of waiting for failures and fixing them one at a time, address the conditions that make failures likely.
+
+Under QALY flow, this shift in perspective is not just scientifically elegant---it is \emph{policy-relevant}. If health is a rate, then the question is: what maintenance policy maximizes sustained quality? This naturally puts prevention, monitoring, and early intervention at the center, because they keep the rate high by avoiding downtime. Acute rescue---the emergency response to a failure that has already happened---is important but expensive and disruptive. A system designed for sustained flow invests more heavily in the upstream work.
+
+There is a nice analogy to building maintenance. A well-maintained building gets regular inspections, replaces components before they fail catastrophically, and adapts its maintenance schedule as it ages. A poorly maintained building looks fine until it doesn't, and then the repair costs are enormous. The geroscience agenda is essentially proposing that we maintain human bodies the way a good facilities engineer maintains a building: systematically, proactively, and with an eye on the long-run rate of performance rather than the latest crisis.
+
+\subsection{When repairs get harder}
+
+Here is where it gets interesting. In engineering, repairs often become less effective over time. A patched roof is not as good as a new roof. A repaired engine has different failure characteristics than a fresh one. The same is likely true for biological interventions: the tenth round of a regenerative therapy may not work as well as the first \citep{marugan2024rlmaintenance}.
+
+This means that the optimal maintenance policy is not static. It has to adapt: change the intervention mix, adjust the monitoring frequency, decide when a component needs replacement rather than repair. Average-reward reinforcement learning and robust control theory provide formal frameworks for this kind of adaptive optimization under uncertainty and degradation \citep{tadepalli1998average, wang2023robustaverage}. The details will depend on the specific biology and the specific interventions, but the structural lesson is robust: \emph{good maintenance policy is iterative and adaptive, not a one-time plan}.
+
+This has implications for how we build health systems. If optimal policy is adaptive, then the monitoring infrastructure---biomarkers, longitudinal data, update cycles---is not an add-on. It is core capital. A QALY-flow society invests in measurement and adaptation as much as in the interventions themselves.
+
+\subsection{The social and behavioral layer}
+
+Even the best biomedical technology cannot produce sustained quality of life if people cannot access it, do not use it effectively, or live in conditions that undermine it. Terrie Moffitt argues that behavioral and social research is essential for translating geroscience into population-level benefits \citep{moffitt2020behavioralsocial}. Eileen Crimmins identifies ``social hallmarks of aging''---education, inequality, stress exposure, environmental conditions---that shape aging trajectories as powerfully as any biological mechanism \citep{crimmins2020socialhallmarks}.
+
+From a QALY-flow perspective, this is not surprising. If sustained quality is the objective, then everything that affects sustained quality is part of the system. Social policy is not separate from health maintenance; it is upstream health maintenance. Reducing chronic stress, improving environmental quality, expanding access to preventive care---these are interventions that change the steady-state distribution of health states across the population.
+
+This is where biomedical engineering meets societal management. The ``control system'' for population health has biological, behavioral, social, and institutional components, and they all feed back into each other. A flow-based perspective makes this interconnection unavoidable and, crucially, makes it legible: you can ask, for each lever, how much it contributes to the sustained rate.
+
+
+\section{Measuring without destroying}
+
+Suppose you have built a wonderful QALY-flow metric. It captures quality, maintenance, and risk in a single, well-defined rate. Institutions adopt it. Resources get allocated based on it. And then, inevitably, someone figures out how to game it.
+
+This is Goodhart's law: when a measure becomes a target, it ceases to be a good measure. The pattern is well-documented and remarkably consistent across domains \citep{stumborg2022goodharts}. Performance targets get met by redefining what counts as performance. Quality metrics get optimized by cherry-picking easy cases. Reporting systems get gamed by manipulating the data that flows into them.
+
+QALY flow is not immune. If anything, it is especially vulnerable, because it is designed for continuous optimization rather than occasional reporting. An institution that optimizes QALY flow has strong incentives to make the number look good, which is not the same thing as making people's lives good. The gap between the two is where the trouble lives.
+
+\subsection{Measurement as a system, not a number}
+
+The solution is not to give up on measurement. It is to treat measurement as a \emph{system} that needs its own maintenance, redundancy, and integrity checks---the same engineering mindset we are applying to health itself.
+
+Holger Strulik's work on measuring aging illustrates the challenge at the individual level: how you define and measure ``biological age'' affects what interventions look effective and what conclusions you can draw \citep{strulik2021measuringageing}. Scaling this up to a population-level flow metric multiplies the measurement challenges and the opportunities for distortion.
+
+What does a robust measurement system look like? Several traditions offer guidance:
+
+\begin{itemize}[leftmargin=*, itemsep=0.5em]
+\item \textbf{Structured risk assessment.} NIST's risk management framework emphasizes continuous monitoring, iterative updating, and explicit treatment of threats, vulnerabilities, and impacts \citep{nist2012sp80030}. A QALY-flow measurement system should be subject to the same discipline: regular assessment of what could go wrong with the measurement itself, and active mitigation.
+
+\item \textbf{Public appraisal practice.} The UK Treasury's Green Book provides a mature example of institutionalized evaluation: structured options analysis, explicit treatment of uncertainty, monitoring plans, and accountability requirements \citep{hmtreasury2026greenbook}. QALY-flow governance should borrow this institutional machinery rather than inventing its own from scratch.
+
+\item \textbf{Adversarial auditing.} If a metric is going to be gamed, build that assumption into the governance design. Red-team the measurement system. Check for proxy manipulation, data quality degradation, and selection effects. Triangulate across multiple data sources so that gaming one source does not compromise the whole picture \citep{stumborg2022goodharts}.
+
+\item \textbf{Resilient health systems.} The WHO's framework for climate-resilient health systems emphasizes anticipation, response, and recovery under stress \citep{who2015climateresilient}. The same structure applies to measurement resilience: anticipate how the measurement system will be stressed, build in response protocols, and design for graceful degradation rather than catastrophic failure.
+\end{itemize}
+
+The overarching principle is that a QALY-flow metric deployed at scale is a \emph{control signal in a sociotechnical system}. Like any control signal, it needs calibration, redundancy, and safeguards against sensor corruption. The metric is only as good as the system that produces and interprets it.
+
+\subsection{Who benefits?}
+
+There is a subtler problem than gaming. When you optimize a single number across a population, you tend to concentrate gains where they are cheapest to produce. If QALY flow is the objective, the path of least resistance is to help people who are already nearly healthy, in populations that are easy to reach, with interventions that are easy to monitor. People who are harder to help---those with worse baseline health, less access, more complex needs---can end up invisible.
+
+Distributional cost-effectiveness analysis provides a mature framework for addressing this \citep{asaria2013distributionalcea}. The key move is to define QALY flow not only for the population as a whole but for identifiable subgroups, and then to make explicit choices about how to weight those subgroups. Do you weight everyone equally? Do you give priority to the worst-off? Do you set a floor below which no group's flow is allowed to fall?
+
+These are political and moral choices, and they should be made openly rather than smuggled into technical assumptions. A well-designed QALY-flow governance system separates the measurement layer (what is the flow for each group?) from the normative layer (how do we aggregate across groups?). This separation is a feature, not a limitation: it makes the contested choices visible, revisable, and subject to democratic accountability.
+
+\subsection{Living with conventional tools}
+
+QALY flow does not require throwing out everything that came before. Conventional discounting, for instance, makes perfectly good sense for bounded subproblems: the costs of a construction project, the payback period of an investment, the ramp-up phase of a new intervention \citep{hmtreasury2026discounting}. The point of QALY flow is not that discounting is wrong. It is that for the \emph{open-ended, steady-state} dimension of policy evaluation, a rate-based metric is more natural and more stable than an attempt to sum discounted benefits over an indefinite horizon.
+
+The practical implication is a hybrid regime. Use conventional tools---discounting, net present value, bounded cost-benefit analysis---for transitional and time-limited components. Use QALY flow for the ongoing, steady-state dimension. The two coexist naturally: the Green Book already distinguishes between transitional costs and continuing effects in its appraisal guidance \citep{hmtreasury2026greenbook}. QALY flow slots into the continuing-effects slot without requiring a revolution in evaluation practice.
+
+
+\section{Five design principles for a QALY-flow society}
+
+Cutting across the three domains, there are a handful of design principles that hold up whether or not the mathematical details change. These are not theorems; they are orientation. Each one is the kind of thing an institution could adopt as a design requirement without needing to wait for a final formalization.
+
+\paragraph{1. Optimize quality subject to continuation constraints.}
+The future is only valuable if it happens. Any system that maximizes a rate must simultaneously keep the denominator from going to zero: maintain the conditions under which the rate is defined \citep{bostrom2013existentialriskprevention, nist2012sp80030}. This means treating catastrophic-risk reduction and systemic resilience as constraints on optimization, not as afterthoughts. Safety is part of the production function for welfare, not an externality.
+
+\paragraph{2. Treat medicine as maintenance engineering.}
+The hallmarks of aging, the geroscience agenda, and the reliability-engineering analogy all point in the same direction: health policy under indefinite horizons is fundamentally a maintenance policy \citep{lopezotin2013hallmarks, melov2016geroscience, finkelstein2006engineeringreliability}. Design for sustained uptime. Invest in monitoring and prevention. Plan for the fact that repairs will become less effective over time and that the maintenance policy will need to evolve.
+
+\paragraph{3. Design metrics that survive being gamed.}
+Any metric used to allocate real resources will be gamed \citep{stumborg2022goodharts}. Build that expectation into the design. Use redundant measurement, adversarial auditing, and triangulation across independent data sources. Treat the measurement system as infrastructure that needs its own maintenance and integrity checks.
+
+\paragraph{4. Make fairness choices visible and revisable.}
+Distribution is not a technical detail; it is the most consequential normative choice in any optimization \citep{asaria2013distributionalcea}. Define flow for subgroups. Make weighting schemes explicit. Set floors. Subject the choices to periodic review and public accountability. Do not let equity get optimized away in the name of aggregate efficiency.
+
+\paragraph{5. Build evaluation into the rhythm of governance.}
+Evaluation is not a one-time event; it is an ongoing process \citep{hmtreasury2026greenbook}. Under indefinite horizons, this becomes even more important: the policy that was optimal yesterday may not be optimal tomorrow, because the biology changes, the population changes, the measurement changes, and the world changes \citep{boucherie2023averagecostnotes}. Appraisal cycles, monitoring plans, and update protocols are not bureaucratic overhead. They are the mechanism by which a QALY-flow society stays responsive.
+
+
+\section{What we don't know (and why that is exciting)}
+
+A paper that pretends to have all the answers is either lying or deluded. This section is about the open questions---not as a to-do list, but as an invitation. Each of these is a place where interesting work could happen, and where progress would benefit all three domains.
+
+\paragraph{Measurement under feedback.}
+How do you estimate steady-state quality and hazard rates when your own policy changes the behavior, reporting, and access patterns that generate the data \citep{stumborg2022goodharts, strulik2021measuringageing}? This is a hard problem in any adaptive system, and it gets harder when the measurement is high-stakes and continuous. It is also one of the most practically important problems for making QALY flow usable at scale.
+
+\paragraph{Robust governance under deep uncertainty.}
+How do you set safety margins, stress-test policies, and manage catastrophic risk when the models themselves may be wrong \citep{nist2012sp80030, wang2023robustaverage}? Robust average-cost control provides some tools, but the gap between theory and institutional practice is wide. Closing that gap is a governance research program with immediate payoff.
+
+\paragraph{Portfolio design across timescales.}
+How do you combine short-horizon decisions (fund this clinical trial, build this hospital) with long-horizon objectives (maximize sustained population quality over decades or centuries) \citep{hmtreasury2026discounting}? The hybrid regime sketched above is a start, but the details of how transitional and steady-state components interact need much more work.
+
+\paragraph{Equity over long horizons.}
+How do you institutionalize distributional fairness in a way that remains politically stable and ethically defensible over long horizons \citep{asaria2013distributionalcea, crimmins2020socialhallmarks}? This is not just a measurement problem; it is a governance problem. Equity weights that are politically feasible today may not be tomorrow, and vice versa. Durable fairness requires mechanisms that adapt, not just principles that are stated.
+
+\paragraph{Deploying maintenance medicine.}
+How do you translate the geroscience agenda into monitorable maintenance programs that actually improve sustained outcomes at population scale \citep{melov2016geroscience, moffitt2020behavioralsocial}? The gap between laboratory promise and population impact is the perennial problem of translational research. A flow-based evaluation framework might help bridge it by providing a clear success criterion (did the sustained rate go up?), but the implementation challenges are formidable.
+
+
+\section{Conclusion}
+
+The shift from sum to rate is a small move with large consequences. Under indefinite horizons, QALY flow provides a shared language for three communities that need to collaborate: futurists who care about keeping the long-run future accessible, biomedical engineers who think about health as maintainable performance, and governance designers who need metrics that can survive real-world use.
+
+The most important contribution of this paper is not a formula. It is a \emph{design stance}: optimize sustained quality of life per unit time, while engineering the maintenance, safety, resilience, and measurement systems that make the optimization meaningful and honest. That stance holds regardless of how the math is eventually formalized.
+
+Building the future, it turns out, looks a lot like maintaining it.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

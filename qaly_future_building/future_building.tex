@@ -1,0 +1,184 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[numbers]{natbib}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+\title{Future-Building Under Indefinite Horizons:\\QALY Flow as a Design Primitive for Futurism, Biomedical Engineering, and Societal Management}
+\author{}
+\date{February 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Indefinite lifespans break an invisible assumption behind much of health policy: that evaluation can be organized around a terminal endpoint and lifetime aggregation. Once the relevant unit is no longer ``a life'' but a continually renewing person-time process with repair, degradation, and stochastic catastrophe, the evaluation problem becomes one of steady performance, resilience, and governability. This paper argues that QALY flow functions as a design primitive for that world. It (i) aligns with long-horizon futurist reasoning about continuation and tail risks, (ii) matches a biomedical engineering view of health as maintainable system performance, and (iii) can be institutionalized as a societal management signal—provided its measurement stack is engineered to resist manipulation and distributional pathologies. The paper foregrounds structural requirements and governance implications rather than reliance on any single mathematical instantiation, so the contribution remains useful under future revisions of the formalism.
+\end{abstract}
+
+\section{Motivation: evaluation after the ``end'' of lifespan}
+A fixed lifespan quietly organizes the standard toolkit: costs and benefits are discounted and summed over a bounded horizon, interventions are compared by lifetime increments, and catastrophe is treated as an adverse event that shortens an otherwise bounded trajectory. Under indefinite horizons, that scaffold collapses. Policy evaluation is forced to speak a different language: sustained quality, maintenance burden, recovery dynamics, and the probability of regime continuation.
+
+QALY flow naturally lives in that language. It makes explicit that the objects to optimize are long-run rates in a regime with repairable degradation, institutional replacement, and catastrophic transitions \citep{goldman2026steadystateqalyflow}. The resulting perspective is not a parochial ``health economics'' move. It is an interface that touches three adjacent domains that dominate future-facing decision-making:
+\begin{enumerate}[leftmargin=*, itemsep=0.25em]
+\item \textbf{Futurism:} how to reason about actions whose primary effect is to keep the long-run future accessible at all \citep{bostrom2013existentialriskprevention, greaves2021stronglongtermism}.
+\item \textbf{Biomedical engineering:} how to treat health as a controlled system with failure modes, redundancy, monitoring, and maintainability constraints \citep{lopezotin2013hallmarks, finkelstein2006engineeringreliability}.
+\item \textbf{Societal management:} how to deploy an objective as an operational signal without being Goodharted, captured, or destabilized \citep{stumborg2022goodharts, hmtreasury2026greenbook, nist2012sp80030}.
+\end{enumerate}
+
+This paper connects those domains by treating QALY flow not as a narrow technical device, but as a practical \emph{governance primitive}: a shared object that can coordinate decisions across science, engineering, and institutions.
+
+\section{What QALY flow adds as an institutional primitive}
+The case for QALY flow, as an institutional primitive, does not depend on any single derivation. It depends on recurring desiderata that become unavoidable under indefinite horizons.
+
+\subsection{Horizon invariance and regime comparability}
+Institutions need objectives that remain stable when the boundary conditions change. In a world without a meaningful terminal age, endpoint-sensitive objectives invite arbitrariness: policy rankings can flip when evaluation horizons are moved. Rate-based objectives avoid that fragility because they are anchored in steady behavior rather than endpoint conventions.
+
+Renewal-reward theory supplies a canonical justification for long-run reward rates in regenerative regimes \citep{sigman2018renewalreward, gallager2011renewalprocesses}. Average-cost (or average-reward) Markov decision process theory generalizes the same idea to controlled dynamics: when actions shape transition behavior, the long-run rate remains a standard criterion with nontrivial existence and stability theory \citep{feinberg2012averagecostmdp}. These are mature, widely used mathematical lenses, which matters for institution-building: a primitive is easier to adopt when it has recognizable theoretical support.
+
+\subsection{Unifying quality, maintenance, and catastrophic risk}
+Indefinite horizons elevate a second desideratum: \emph{risk and recovery are not peripheral}. Futurist work argues that small changes to the probability of ``continuation'' dominate evaluation when the accessible future is large \citep{bostrom2013existentialriskprevention}. Even when one does not accept the strongest versions of those arguments, the operational implication is robust: tail risks and catastrophe rates become first-order policy targets rather than footnotes.
+
+QALY flow naturally unifies three levers that otherwise end up in separate analytical silos:
+\begin{itemize}[leftmargin=*, itemsep=0.25em]
+\item \textbf{Quality level:} the sustained distribution of health states in ordinary operation.
+\item \textbf{Maintenance dynamics:} the frequency, cost, and effectiveness of repair, prevention, and upgrades.
+\item \textbf{Catastrophe dynamics:} the rate, severity, and recoverability of transitions that end or reset trajectories.
+\end{itemize}
+The key governance move is to treat these levers as jointly managed system parameters. That creates a shared vocabulary for healthcare operations, biomedical R\&D, safety engineering, and long-horizon strategic planning.
+
+\subsection{Compatibility with layered normative commitments}
+Long-horizon evaluation inevitably confronts moral and political disagreement about discounting, population ethics, and intergenerational tradeoffs. A practical primitive should remain usable across that disagreement. Strong longtermist arguments provide one route: under plausible assumptions, the far future matters a great deal \citep{greaves2021stronglongtermism}. Public appraisal practice provides another: discounting schedules and welfare weights are institutional choices, made explicit and revisable \citep{hmtreasury2026greenbook, hmtreasury2026discounting}.
+
+QALY flow is useful precisely because it can sit underneath these layers. It can function as the \emph{base accounting} for steady performance, while leaving room for:
+\begin{itemize}[leftmargin=*, itemsep=0.25em]
+\item transitional accounting (e.g., ramp-up costs) that may use discounting conventions,
+\item distributional choices (equity weights) that remain politically contestable,
+\item robustness constraints and safety margins driven by risk tolerance.
+\end{itemize}
+This separability is a feature: it makes the metric a coordination interface rather than an attempt to settle every normative dispute.
+
+\section{Futurism: persistence, tempo, and the value of continuation}
+Futurist discourse often begins from the claim that the stakes of ``keeping options open'' explode when the future is large. In \citet{bostrom2003astronomicalwaste}, delay in safe development is framed as an opportunity cost, while still emphasizing that safety can dominate speed. In \citet{bostrom2013existentialriskprevention}, risk reduction is prioritized because it preserves the possibility of large future value.
+
+QALY flow contributes to this discourse in two ways.
+
+\subsection{From philosophical stakes to operational variables}
+Futurist arguments are often criticized for being too abstract to guide policy. QALY flow helps translate them into operational variables: catastrophe rates, recovery times, and steady quality levels. It provides an explicit bridge between ``continuation'' and the everyday mechanics of health systems and technology governance.
+
+This bridge matters because many interventions that futurism cares about are not direct quality improvements; they are \emph{regime stabilizers}. Examples include:
+\begin{itemize}[leftmargin=*, itemsep=0.25em]
+\item pandemic preparedness and biosurveillance (reducing catastrophe frequency or severity),
+\item safety engineering in critical infrastructure (preventing cascading failures),
+\item institutional redundancy and coordination capacity (faster recovery after shocks).
+\end{itemize}
+A flow-based perspective treats these as central because they shape the long-run distribution of person-time.
+
+\subsection{Portfolio governance: level, safety, and resilience}
+Astronomical stakes reasoning highlights a tradeoff between accelerating progress and preventing catastrophic failure \citep{bostrom2003astronomicalwaste}. Under flow governance, this becomes a design principle: optimize steady welfare \emph{subject to} continuation constraints. That framing naturally yields portfolio thinking:
+\begin{itemize}[leftmargin=*, itemsep=0.25em]
+\item investments that raise steady quality (healthspan technologies, prevention),
+\item investments that lower catastrophe rate (safety, security, coordination),
+\item investments that increase recoverability (resilience, redundancy, surge capacity).
+\end{itemize}
+The point is not that QALY flow \emph{solves} futurist prioritization. The point is that it supplies a stable accounting interface that makes the portfolio tradeoffs legible and governable.
+
+\section{Biomedical engineering: health as maintainable performance}
+\subsection{From diseases to failure modes}
+Geroscience reframes the health objective from treating individual diseases to targeting aging processes that generate multiple chronic conditions \citep{melov2016geroscience}. The hallmarks framework organizes those processes into interacting mechanisms and provides a map of potential intervention levers \citep{lopezotin2013hallmarks, lopezotin2023expandinghallmarks}. Reliability-inspired work further recasts morbidity and mortality trajectories as failure processes shaped by redundancy depletion, wear, and repair \citep{finkelstein2006engineeringreliability}.
+
+This constellation suggests an engineering interpretation of medicine under indefinite horizons:
+\begin{itemize}[leftmargin=*, itemsep=0.25em]
+\item health is system performance with multiple failure modes,
+\item interventions are control actions with side effects and feedback,
+\item ``success'' is uptime and sustained quality, not merely endpoint extension.
+\end{itemize}
+A flow objective fits naturally: it values persistent high-quality person-time and makes maintenance burdens explicit.
+
+\subsection{Maintenance policy as a control problem}
+Engineering maintenance is a policy problem under uncertainty: when to inspect, repair, replace, and how to allocate limited resources over time. Contemporary work uses reinforcement learning and adaptive control to handle complex deterioration and nonstationary repair efficacy \citep{marugan2024rlmaintenance, tadepalli1998average}. Robust average-reward formulations address misspecification and adversarial uncertainty \citep{wang2023robustaverage}.
+
+These tools matter here mainly as \emph{existence proofs} for a governance stance:
+\begin{enumerate}[leftmargin=*, itemsep=0.25em]
+\item indefinite-horizon objectives require different methods than discounted, finite-horizon objectives,
+\item optimal policy is iterative and adaptive, not a one-time ``optimal plan'',
+\item monitoring and model updating are part of the objective’s operational meaning.
+\end{enumerate}
+
+Transposed into biomedical engineering, this implies that health systems built for indefinite horizons should treat:
+\begin{itemize}[leftmargin=*, itemsep=0.25em]
+\item biomarker infrastructure and longitudinal monitoring as core capital,
+\item adaptive protocols (update cycles) as a first-class design element,
+\item replacement/regeneration pathways as safety valves when repair degrades.
+\end{itemize}
+
+\subsection{Social and behavioral layers as part of the control system}
+Even perfect biomedical technology does not automatically yield steady person-time improvements. Realized outcomes depend on behavior, environment, and access. The geroscience translation agenda emphasizes behavioral and social research as essential for producing population-level benefits \citep{moffitt2020behavioralsocial}. ``Social hallmarks'' tie aging trajectories to inequality, stress exposure, and upstream determinants \citep{crimmins2020socialhallmarks}.
+
+A flow perspective makes this unavoidable: if upstream factors shape the steady distribution of health states, then social policy is part of the maintenance system. This point bridges biomedical engineering and societal management: control loops run through incentives, compliance, trust, and resource distribution.
+
+\section{Societal management: institutionalizing a flow metric}
+\subsection{The metric as a control signal}
+Once a metric is used to allocate resources, it becomes a target. The literature on Goodhart-type failures catalogs how proxies are gamed and how measurement systems degrade when incentives become tight \citep{stumborg2022goodharts}. A flow metric is especially vulnerable because it is intended for continuous optimization rather than one-off reporting.
+
+Institutionalizing QALY flow therefore implies building a \emph{measurement and governance stack} rather than deploying a single scalar number:
+\begin{enumerate}[leftmargin=*, itemsep=0.25em]
+\item \textbf{Measurement validity:} credible estimation of quality trajectories, hazards, and transition dynamics \citep{strulik2021measuringageing}.
+\item \textbf{Equity layer:} explicit representation of distributional consequences and inequality aversion \citep{asaria2013distributionalcea}.
+\item \textbf{Risk layer:} structured assessment of threats, vulnerabilities, and impacts, maintained over time \citep{nist2012sp80030}.
+\item \textbf{Auditability:} reproducible appraisals and monitoring plans consistent with public appraisal practice \citep{hmtreasury2026greenbook}.
+\end{enumerate}
+
+A useful mental model is that QALY flow is a control signal in a sociotechnical system. Like any control signal, it requires calibration, redundancy, and safeguards against sensor corruption.
+
+\subsection{Distribution and legitimacy}
+Optimization over long horizons will amplify whatever is easy to measure and monetize. If distribution is left implicit, steady-state optimization can concentrate gains among groups with better access, higher baseline quality, or stronger voice. Distributional cost-effectiveness analysis provides a mature way to represent and parameterize equity choices \citep{asaria2013distributionalcea}. Under indefinite horizons, the key governance idea is not to hide distributional choices inside ``technical'' assumptions, but to make them explicit, revisable, and politically legible.
+
+\subsection{Resilience as steady-state capacity}
+Resilience frameworks for health systems emphasize anticipation, response, and recovery under stress \citep{who2015climateresilient}. Under flow-based evaluation, resilience is naturally interpreted as preserving person-time quality by reducing downtime and avoiding collapses. This creates a clean alignment between health-system resilience and futurist concerns: resilience is a continuation technology.
+
+\section{Design principles for a QALY-flow society}
+This section compresses the cross-disciplinary implications into design principles that do not depend on any specific mathematical details.
+
+\subsection{Principle 1: optimize steady welfare subject to continuation constraints}
+The long-run future is only valuable if it occurs. In operational terms, this implies explicit constraints on catastrophe risk and systemic fragility, while optimizing steady welfare within those constraints \citep{bostrom2013existentialriskprevention, nist2012sp80030}. Flow governance should therefore treat safety and security as part of the production function for welfare, not an externality.
+
+\subsection{Principle 2: treat medicine as maintenance engineering}
+Aging biology and geroscience support viewing health as maintainable system performance \citep{lopezotin2013hallmarks, melov2016geroscience}. Under indefinite horizons, lifecycle design dominates: preventive action, monitoring, protocol upgrades, and replacement/regeneration capacity become core infrastructure \citep{goldman2026steadystateqalyflow}. The engineering stance also foregrounds unintended interactions, highlighted in expanded hallmark views \citep{lopezotin2023expandinghallmarks}.
+
+\subsection{Principle 3: build anti-Goodhart measurement stacks}
+Single-number objectives invite gaming. Governing a flow objective requires redundancy in measurement, independent audits, adversarial evaluation, and robustness checks \citep{stumborg2022goodharts, wang2023robustaverage}. The aim is not perfect measurement; it is \emph{stable usefulness} over time.
+
+\subsection{Principle 4: make distribution explicit}
+Distributional choices are unavoidable and should be explicit. DCEA provides a framework for equity weighting and inequality accounting that can sit atop a flow base metric \citep{asaria2013distributionalcea}. This separation improves legitimacy: contestable moral parameters are not smuggled into technical assumptions.
+
+\subsection{Principle 5: align appraisal procedures with indefinite horizons}
+Public appraisal already emphasizes option analysis, uncertainty, evaluation planning, and monitoring \citep{hmtreasury2026greenbook}. Flow governance extends this: appraisal becomes recurrent. Hybrid regimes are natural: use conventional discounting for transitional and legacy components \citep{hmtreasury2026discounting}, while steady-state performance is governed by the flow objective.
+
+\section{A research agenda that survives formal rework}
+To keep the contribution robust to future revisions of the formalism, the agenda is organized around durable questions rather than specific equations:
+\begin{enumerate}[leftmargin=*, itemsep=0.35em]
+\item \textbf{Measurement under feedback:} how to estimate steady quality and hazards when policy changes behavior, reporting, and access \citep{stumborg2022goodharts, strulik2021measuringageing}.
+\item \textbf{Robust governance under uncertainty:} how to set safety margins and stress-test policies when transition models are misspecified \citep{nist2012sp80030, wang2023robustaverage}.
+\item \textbf{Portfolio design across timescales:} how to combine short-horizon ramp-up decisions with long-horizon steady optimization \citep{hmtreasury2026discounting}.
+\item \textbf{Equity and legitimacy:} how to institutionalize explicit distributional choices in ways that remain politically stable over long horizons \citep{asaria2013distributionalcea, crimmins2020socialhallmarks}.
+\item \textbf{Deployment of maintenance medicine:} how to translate geroscience into monitorable maintenance programs that improve steady outcomes at population scale \citep{melov2016geroscience, moffitt2020behavioralsocial}.
+\end{enumerate}
+
+\section{Conclusion}
+Under indefinite horizons, the central policy question becomes how to build regimes that sustain health quality over time while remaining resilient to shocks and robust to perverse incentives. QALY flow earns its place in that regime as a stable institutional primitive: it aligns with renewal and average-cost theory, matches the engineering reality of maintenance and failure, and provides a shared accounting interface between futurist priorities and practical governance constraints. The most important takeaway is not a formula; it is a design stance: optimize steady person-time quality while engineering the measurement, safety, and legitimacy machinery that makes such optimization viable.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
